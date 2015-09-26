@@ -3,7 +3,7 @@ angular.module('game')
     var gameWatcher = $scope.$watchGroup(['player.latitude', 'player.longitude'], function (coords) {
       Restangular.one('game').get({ latitude: coords[0], longitude: coords[1], distance: 0.5 }).then(function (data) {
         $scope.players = data.players;
-        // $scope.buildings = data.estates;
+        $scope.buildings = data.estates;
 
         startListening();
       });

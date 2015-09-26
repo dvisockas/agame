@@ -79,8 +79,6 @@ angular.module('game')
         function changeHandler () {
           var coords = [$scope.player.latitude, $scope.player.longitude];
 
-          // function onClick(e) {debugger;alert(this.getLatLng());};
-
           if (playerMarker) {
             playerMarker.setLatLng(coords);
           } else {
@@ -89,11 +87,11 @@ angular.module('game')
               zIndexOffset: 1000,
               player: $scope.player
             }).addTo(map);
-          }
 
-          map.setView(coords, 18, {
-            animate: true
-          });
+            map.setView(coords, 18, {
+              animate: true
+            });
+          }
         }
 
         function moveHandler (event, user) {

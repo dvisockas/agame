@@ -17,19 +17,22 @@
     });
 
     function onSuccess (data) {
-      var coords = data.coords;
+      var coords = data.coords,
+          latitude = coords.latitude,
+          longitude = coords.longitude,
+          opts = { latitude: latitude, longitude: longitude };
 
-      $scope.player.latitude = coords.latitude;
-      $scope.player.longitude = coords.longitude;
+      $scope.player.latitude = latitude;
+      $scope.player.longitude = longitude;
 
       if (!$scope.players && !$scope.buildings) {
-        Restangular.all('game').getList({ latitude: $scope.player.latitude, longitude: $scope.player.longitude }).then(function (data) {
+        Restangular.all('game').getList(opts).then(function (data) {
           $scope.players = data.players;
           $scope.buildings = data.estates;
         });
       }
 
-      Restangular.one('player', $scope.player.id).patch();
+      Restangular.one('player', $scope.player.id).patch({ player: opts });
 
       $scope.$broadcast('position-changed');
     }

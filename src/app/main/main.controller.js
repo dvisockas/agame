@@ -6,8 +6,8 @@
     .controller('MainController', MainController);
 
   /** @ngInject */
-  MainController.$inject = ['$scope', 'player', 'Restangular', '$window'];
-  function MainController ($scope, player, Restangular, $window) {
+  MainController.$inject = ['$scope', 'player', 'Restangular', '$window', 'socket'];
+  function MainController ($scope, player, Restangular, $window, socket) {
     $scope.player = player;
 
     var watcher = $window.navigator.geolocation.watchPosition(onSuccess, onError, {
@@ -25,8 +25,10 @@
       $scope.player.latitude = latitude;
       $scope.player.longitude = longitude;
 
+      socket.emit('location changed', $scope.player);
+
       if (!$scope.players && !$scope.buildings) {
-        Restangular.all('game').getList(opts).then(function (data) {
+        Restangular.one('game').get(opts).then(function (data) {
           $scope.players = data.players;
           $scope.buildings = data.estates;
         });

@@ -104,7 +104,7 @@ angular.module('game')
           iconUrl: 'assets/images/yeoman.png',
           iconSize:     [40, 40],
           iconAnchor:   [22, 94],
-          shadowAnchor: [4, 62], 
+          shadowAnchor: [4, 62],
           popupAnchor:  [-3, -76]
         });
 
@@ -112,7 +112,7 @@ angular.module('game')
           iconUrl: 'assets/images/jasmine.png',
           iconSize:     [40, 40],
           iconAnchor:   [22, 94],
-          shadowAnchor: [4, 62], 
+          shadowAnchor: [4, 62],
           popupAnchor:  [-3, -76]
         });
 
@@ -150,7 +150,6 @@ angular.module('game')
         }
 
         function leaveHandler (event, data) {
-          console.log(data)
           var user = data.user,
               marker = playerMarkers[user.id];
 
@@ -163,7 +162,7 @@ angular.module('game')
           var player = $scope.player;
 
           if (player) {
-            
+
           }
         }
       }

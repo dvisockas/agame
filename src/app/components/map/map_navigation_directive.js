@@ -9,11 +9,11 @@ angular.module('game')
         $scope.$on('clickedMarker', function(e, data) {
           $scope.questions = {};
           $scope.object = {};
-          // if (angular.isArray(data)) {
-          //   $scope.options = data;
-          // } else {
+          if (angular.isArray(data)) {
+            $scope.options = data;
+          } else {
             $scope.object = data;
-          // }
+          }
           $scope.$apply();
         });
 

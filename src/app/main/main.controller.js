@@ -32,6 +32,9 @@
         Restangular.one('game').get(opts).then(function (data) {
           $scope.players = data.players;
           $scope.buildings = data.estates;
+          socket.on('location changed', function(data) {
+            debugger;
+          });
         });
       }
 

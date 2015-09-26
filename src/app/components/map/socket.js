@@ -5,7 +5,6 @@ angular.module('game').factory('socket', function($rootScope) {
       socket.on(eventName, function() {
         var args = arguments;
         $rootScope.$apply(function() {
-          console.log(args)
           callback.apply(socket, args);
         });
       });

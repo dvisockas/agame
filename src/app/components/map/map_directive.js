@@ -71,7 +71,7 @@ angular.module('game')
         var playerWatcher = $scope.$watch('players', function (playas) {
           if (playas) {
             angular.forEach(playas, function (playa) {
-              var coords = [playa.latitude, playa.longitude]
+              var coords = [playa.latitude, playa.longitude];
 
               playerMarkers[playa.id] = L.marker(coords, {icon: peasantIcon, player: playa}).addTo(map).on('click', onClick);
             });

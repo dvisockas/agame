@@ -23,6 +23,7 @@ angular.module('game')
             playerMarker;
 
         map.addLayer(layer);
+        map.on('click', onClick);
 
         var playerWatcher = $scope.$watch('players', function (playas) {
           if (playas) {
@@ -83,11 +84,11 @@ angular.module('game')
           if (playerMarker) {
             playerMarker.setLatLng(coords);
           } else {
-            playerMarker = L.marker(coords, {
-              icon: playerIcon,
-              zIndexOffset: 1000,
-              player: $scope.player
-            }).addTo(map);
+            // playerMarker = L.marker(coords, {
+            //   icon: playerIcon,
+            //   zIndexOffset: 1000,
+            //   player: $scope.player
+            // }).addTo(map);
 
             map.setView(coords, 18, {
               animate: true

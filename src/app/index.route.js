@@ -9,19 +9,12 @@
   function routeConfig($stateProvider, $urlRouterProvider) {
     $stateProvider
       .state('root', {
-        url: '/',
-        absctract: true,
+        url: '/git-gud',
         controller: 'MainController',
-        controllerAs: 'main',
-        template: '<div class="container"><div ui-view></div></div>',
+        templateUrl: 'app/components/map/map.html',
         resolve: {
           player: ensurePlayer
         }
-      })
-      .state('root.game', {
-        url: '/git-gud',
-        templateUrl: 'app/components/map/map.html',
-        controller: 'MapController'
       })
       .state('player', {
         url: '/become',

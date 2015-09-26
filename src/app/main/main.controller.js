@@ -6,7 +6,8 @@
     .controller('MainController', MainController);
 
   /** @ngInject */
-  function MainController() {
-    
+  MainController.$inject = ['$scope', 'player']
+  function MainController ($scope, player) {
+    $scope.player = player;
   }
 })();

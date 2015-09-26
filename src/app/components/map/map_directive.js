@@ -136,6 +136,8 @@ angular.module('game')
               animate: true
             });
           }
+
+          map.setMaxBounds(getMaxBounds());
         }
 
         function moveHandler (event, user) {
@@ -164,10 +166,15 @@ angular.module('game')
 
 
         function getMaxBounds () {
-          var player = $scope.player;
+          var player = $scope.player,
+              lat = 0.5 * (1 / 110.574),
+              lon = 0.5 * (1 / (111.32 * Math.cos(player.latitude)));
 
           if (player) {
-
+            return [
+              [player.latitude - lat, player.longitude - lon],
+              [player.latitude + lat, player.longitude + lon]
+            ];
           }
         }
       }

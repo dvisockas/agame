@@ -1,5 +1,5 @@
 angular.module('game')
-  .directive('mapNavigation', ['$window', '$swipe', function ($window, $swipe) {
+  .directive('mapNavigation', ['$window', '$swipe', 'Restangular', function ($window, $swipe, Restangular) {
     return {
       scope: {
       }, // {} = isolate, true = child, false/undefined = no change
@@ -51,7 +51,24 @@ angular.module('game')
           $scope.object = object;
         };
 
+        $scope.getEstateTypes = function (estate) {
+          Restangular.one('estates', estate.id).all('estate_types').getList().then(function (types) {
+            $scope.estateTypes = types;
+          });
+        };
 
+        $scope.buyEstate = function (estateType, estate) {
+          Restangular.one('estates', estate.id).patch({
+            estate: {
+              estate_type_id: estateType.id,
+              player_id: $scope.player.id
+            }
+          }).then(function (boughtEstate) {
+            var buildings = $scope.buildings;
+
+            buildings[buildings.indexOf(estate)] = boughtEstate;
+          });
+        };
       }
     }
   }

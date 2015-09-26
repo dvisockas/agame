@@ -23,10 +23,13 @@
       <div class="land">Land: 43km</div>
     </div>
     <div class="user-meta">
-      <div class="build text-center">Statyti trobą
-        <div class="cost">20 auksinių</div>
+      <div class="build text-center" ng-click='getEstateTypes(object)'>
+        Statyti trobą
       </div>
       <div class="attack text-center text-danger" ng-click="attack(object)">Atakuoti trobą</div>
+    </div>
+    <div class='user-meta clickable' ng-repeat='type in estateTypes' ng-click='buyEstate(type, object)'>
+      
     </div>
   </div>
 

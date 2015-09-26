@@ -3,37 +3,81 @@ angular.module('game')
     return {
       scope: {
         player: '=',
+        players: '=',
         buildings: '='
       }, // {} = isolate, true = child, false/undefined = no change
       restrict: 'A', // E = Element, A = Attribute, C = Class, M = Comment
       link: function ($scope, $elem, attrs) {
         var layer = new L.stamenTileLayer('toner'),
             map = new L.Map(attrs.id, {
-              center: [54, 25],
+              center: [$scope.player.latitude, $scope.player.longitude],
               zoom: 1
+            }),
+            markers = {},
+            playerMarker;
+
+        var playerWatcher = $scope.$watch('players', function (playas) {
+          if (playas) {
+            angular.forEach(playas, function (playa) {
+              var coords = [playa.latitude, playa.longitude]
+              
+              markers[playa.name] = L.marker(coords, {icon: peasantIcon}).addTo(map);
             });
+
+            playerWatcher();
+          }
+        });
+
+        var buildingsWatcher = $scope.$watch('buildings', function (buildings) {
+          if (buildings) {
+            angular.forEach(buildings, function (building) {
+              var coords = [building.latitude, building.longitude];
+
+              markers[building.name] = L.marker(coords, {icon: buildingIcon}).addTo(map);
+            });
+
+            buildingsWatcher();
+          }
+        });
 
         map.addLayer(layer);
 
-        var watcher = $window.navigator.geolocation.watchPosition(onSuccess, onError, {
-          enableHighAccuracy: true,
-          timeout: 10000,
-          maximumAge: 1000
-        });
+        $scope.$on('position-changed', changeHandler);
 
-        var greenIcon = L.icon({
+        var playerIcon = L.icon({
           iconUrl: 'assets/images/angular.png',
-          iconSize:     [95, 95], // size of the icon
+          iconSize:     [100, 100], // size of the icon
           iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
           shadowAnchor: [4, 62],  // the same for the shadow
           popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
         });
 
-        function onSuccess (data) {
-          var coords = data.coords;
-          if (coords) L.marker([coords.latitude, coords.longitude], {icon: greenIcon}).addTo(map);
+        var peasantIcon = L.icon({
+          iconUrl: 'assets/images/yeoman.png',
+          iconSize:     [80, 80], // size of the icon
+          iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+          shadowAnchor: [4, 62],  // the same for the shadow
+          popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+        });
 
-          map.setView([coords.latitude, coords.longitude], 20, {
+        var buildingIcon = L.icon({
+          iconUrl: 'assets/images/jasmine.png',
+          iconSize:     [80, 80], // size of the icon
+          iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+          shadowAnchor: [4, 62],  // the same for the shadow
+          popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+        });
+
+        function changeHandler () {
+          var coords = [$scope.player.latitude, $scope.player.longitude];
+
+          if (playerMarker) {
+            playerMarker.setLatLng(coords);
+          } else {
+            L.marker(coords, {icon: playerIcon}).addTo(map);
+          }
+
+          map.setView(coords, 20, {
             animate: true
           });
         }

@@ -152,7 +152,6 @@ angular.module('game')
         }
 
         function leaveHandler (event, data) {
-          console.log(data)
           var user = data.user,
               marker = playerMarkers[user.id];
 

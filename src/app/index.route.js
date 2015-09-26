@@ -8,7 +8,7 @@
   routeConfig.$inject = ['$stateProvider', '$urlRouterProvider'];
   function routeConfig($stateProvider, $urlRouterProvider) {
     $stateProvider
-      .state('root', {
+      .state('game', {
         url: '/git-gud',
         controller: 'MainController',
         templateUrl: 'app/components/map/map.html',
@@ -27,12 +27,14 @@
 
   ensurePlayer.$inject = ['Restangular', 'localStorageService', '$q'];
   function ensurePlayer (Restangular, localStorageService, $q) {
-    var playerId = localStorageService.get('player-id');
+    var name = localStorageService.get('player-name');
     
-    if (playerId) {
-      return Restangular.one('players', playerId);
+    if (name) {
+      var parts = name.split('-');
+
+      return Restangular.one('players', parts[parts.length - 1]);
     } else {
-      return $q.reject(playerId);
+      return $q.reject(name);
     }
   }
 

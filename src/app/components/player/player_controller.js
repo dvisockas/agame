@@ -5,8 +5,9 @@ angular.module('game')
         $window.navigator.geolocation.getCurrentPosition(function (data) {
           var coords = data.coords;
 
-          $scope.player.latitude = coords.latitude;
-          $scope.player.longitude = coords.longitude;
+          ['latitude', 'longitude'].forEach(function (prop) {
+            $scope.player[prop] = coords[prop];
+          });
 
           Restangular.all('players').post({ player: $scope.player }).then(function (player) {
             localStorageService.set('player-name', player.name);

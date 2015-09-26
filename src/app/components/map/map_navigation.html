@@ -1,25 +1,27 @@
 <div id="menu-navigation" class="text-center" ng-show="object.id || options.length">
 
-  <div id="name"><span>Pavadinimas</span></div>
-
-  <div id="user-meta">
-    <div class="gold">Gold: 23</div>
-    <div class="land">Land: 43km</div>
-  </div>
-  
   <!-- Interacting with user -->
   <div ng-if="object.name">
-    <div class="col-xs-12">User: {{ object.name }}</div>
-    <div class="col-xs-4">Užpulti</div>
-    <div class="col-xs-4">Susidraugauti</div>
-    <div class="col-xs-4">Pakviesti alaus</div>
+    <div class="name"><span>User: {{ object.name }}</span></div>
+    <!--<div class="col-xs-4">Užpulti</div>-->
+    <!--<div class="col-xs-4">Susidraugauti</div>-->
+    <!--<div class="col-xs-4">Pakviesti alaus</div>-->
+
+    <div class="user-meta">
+      <div class="gold">Gold: 23</div>
+      <div class="land">Land: 43km</div>
+    </div>
   </div>
   <!-- Interacting with estate -->
   <div ng-if="object.route === 'estates'">
-    <div class="col-xs-12">Estate: {{ object.id }}</div>
-    <div class="col-xs-4">Ieškoti pinigų</div>
-    <div class="col-xs-4">Apvogti</div>
-    <div class="col-xs-4">Statyti trobą</div>
+    <div class="name"><span>Estate: {{ object.id }}</span></div>
+    <!--<div class="col-xs-4">Ieškoti pinigų</div>-->
+    <!--<div class="col-xs-4">Apvogti</div>-->
+    <!--<div class="col-xs-4">Statyti trobą</div>-->
+    <div class="user-meta">
+      <div class="gold">Gold: 23</div>
+      <div class="land">Land: 43km</div>
+    </div>
   </div>
 
   <div ng-if="options.length">

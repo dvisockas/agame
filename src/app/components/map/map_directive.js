@@ -13,7 +13,8 @@ angular.module('game')
               center: [$scope.player.latitude, $scope.player.longitude],
               zoom: 1
             }),
-            markers = {},
+            playerMarkers = {},
+            buildingMarkers = {},
             playerMarker;
 
         var playerWatcher = $scope.$watch('players', function (playas) {
@@ -22,7 +23,7 @@ angular.module('game')
               var coords = [playa.latitude, playa.longitude]
               
               if (playa.id !== $scope.player.id) {
-                markers[playa.name] = L.marker(coords, {icon: peasantIcon}).addTo(map);
+                playerMarkers[playa.name] = L.marker(coords, {icon: peasantIcon}).addTo(map);
               }
             });
 
@@ -30,21 +31,22 @@ angular.module('game')
           }
         });
 
-        // var buildingsWatcher = $scope.$watch('buildings', function (buildings) {
-        //   if (buildings) {
-        //     angular.forEach(buildings, function (building) {
-        //       var coords = [building.latitude, building.longitude];
+        var buildingsWatcher = $scope.$watch('buildings', function (buildings) {
+          if (buildings) {
+            angular.forEach(buildings, function (building) {
+              var coords = [building.latitude, building.longitude];
 
-        //       markers[building.name] = L.marker(coords, {icon: buildingIcon}).addTo(map);
-        //     });
+              buildingMarkers[building.id] = L.marker(coords, {icon: buildingIcon}).addTo(map);
+            });
 
-        //     buildingsWatcher();
-        //   }
-        // });
+            buildingsWatcher();
+          }
+        });
 
         map.addLayer(layer);
 
         $scope.$on('position-changed', changeHandler);
+        $scope.$on('user-moved', moveHandler);
 
         var playerIcon = L.icon({
           iconUrl: 'assets/images/angular.png',
@@ -87,8 +89,12 @@ angular.module('game')
           });
         }
 
-        function onError () {
-          $window.alert('No game for you');
+        function moveHandler (event, user) {
+          angular.forEach(playerMarkers, function (name, marker) {
+            if (user.name === name) {
+              marker.setLatLng([user.latitude, user.longitude]);
+            }
+          });
         }
       }
     };

@@ -5,8 +5,8 @@ angular.module('game')
         $scope.players = data.players;
         $scope.buildings = data.estates;
 
-        socket.on('location changed', function(data) {
-          console.log(data)
+        socket.on('user location changed', function (data) {
+          $scope.$broadcast('user-moved', data.user);
         });
       });
 

@@ -33,7 +33,7 @@
 
       socket.emit('location changed', player);
 
-      Restangular.one('player', player.id).patch({ player: opts });
+      Restangular.one('players', player.id).patch({ player: opts });
 
       $scope.$broadcast('position-changed');
     }

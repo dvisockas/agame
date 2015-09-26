@@ -32,7 +32,7 @@
 
   <div ng-if="options.length">
     <p ng-repeat="option in options" ng-click='setActive(option)' class="options">
-      {{ object.route === 'estates' ? "Estate: " : "User: " + option.name }}
+      {{ (option.route === 'estates' ? "Estate: " : "User: ") + option.name }}
     </p>
   </div>
 </div>

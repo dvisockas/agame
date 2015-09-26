@@ -6,6 +6,10 @@ angular.module('game')
       restrict: 'E', // E = Element, A = Attribute, C = Class, M = Comment
       templateUrl: 'app/components/map/map_navigation.html',
       link: function ($scope, $elem, attrs) {
+        $scope.attack = function(estate) {
+          alert("O, koks mandras!");
+        };
+
         var delta;
         $swipe.bind($elem, {
           start: function(coords) {
@@ -24,10 +28,8 @@ angular.module('game')
               $scope.object = {};
               $scope.$apply();
             }
-            console.log('ended');
           },
           cancel: function(coords) {
-            console.log('canceled');
           }
         });
 

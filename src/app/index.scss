@@ -124,7 +124,7 @@ body {
     }
   }
 
-  .user-meta {
+  .user-meta, .acions {
     font-family: 'Montserrat', sans-serif;
     font-size: 20px;
     font-weight: 400;
@@ -139,14 +139,16 @@ body {
     > div {
       float: left;
       width: 50%;
+      color: #fff;
+      cursor: pointer;
     }
 
     .gold {
       color: #fdc905;
     }
 
-    .land {
-      color: #fff;
+    .attack {
+      color: #E74C3C;
     }
   }
 }

@@ -27,22 +27,29 @@ angular.module('game')
         }
 
         function onClick(e) {
-          var obj = this.getLatLng();
+          var obj;
+          if (this.getLatLng) {
+            obj = this.getLatLng();
+          } else {
+            obj = {};
+          }
 
-          if ($scope.players.length || $scope.estates.length) {
+          if (($scope.players.length || $scope.estates.length) && obj.lat) {
             var nearby = [];
             angular.forEach($scope.players, function(player) {
               if (distance(player.latitude, player.longitude, obj.lat, obj.lng) < 0.02) {
                 nearby.push(player);
               }
             });
-            angular.forEach($scope.estates, function(estate) {
+            angular.forEach($scope.buildings, function(estate) {
               if (distance(estate.latitude, estate.longitude, obj.lat, obj.lng) < 0.02) {
                 nearby.push(estate);
               }
             });
-            if (nearby.length) {
+            if (nearby.length > 1) {
               $rootScope.$broadcast('clickedMarker', nearby);
+            } else {
+              $rootScope.$broadcast('clickedMarker', e.target.options.player || e.target.options.estate);
             }
           } else {
             $rootScope.$broadcast('clickedMarker', e.target.options.player || e.target.options.estate);

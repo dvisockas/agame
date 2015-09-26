@@ -23,7 +23,7 @@ angular.module('game')
           if (playas) {
             angular.forEach(playas, function (playa) {
               var coords = [playa.latitude, playa.longitude]
-              
+
               if (playa.id !== $scope.player.id) {
                 playerMarkers[playa.id] = L.marker(coords, {icon: peasantIcon}).addTo(map);
               }

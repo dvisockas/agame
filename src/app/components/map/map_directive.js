@@ -32,7 +32,7 @@ angular.module('game')
             obj = {};
           }
 
-          if (($scope.players.length || $scope.estates.length) && obj.lat) {
+          if (($scope.players.length || $scope.buildings.length) && obj.lat) {
             var nearby = [];
             angular.forEach($scope.players, function(player) {
               if (distance(player.latitude, player.longitude, obj.lat, obj.lng) < 0.01) {

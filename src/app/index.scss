@@ -108,7 +108,7 @@ body {
   background-color: #353e49;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 
-  #name {
+  .name {
     width: 100%;
     line-height: 50px;
     color: white;
@@ -117,7 +117,7 @@ body {
     font-weight: 400;
   }
 
-  #user-meta {
+  .user-meta {
     font-family: 'Montserrat', sans-serif;
     font-size: 20px;
     font-weight: 400;

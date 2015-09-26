@@ -32,7 +32,7 @@
           $scope.players = data.players;
           $scope.buildings = data.estates;
           socket.on('location changed', function(data) {
-            debugger;
+            console.log(data);
           });
         });
       }

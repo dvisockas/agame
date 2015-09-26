@@ -108,6 +108,7 @@ body {
   background-color: #353e49;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
   transition: .5s all linear;
+  max-height: 500px;
 
   .name {
     width: 100%;
@@ -118,8 +119,8 @@ body {
     font-weight: 400;
     max-height: 150px;
     overflow-y: scroll;
-    &::-webkit-scrollbar { 
-      display: none; 
+    &::-webkit-scrollbar {
+      display: none;
     }
   }
 

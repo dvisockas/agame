@@ -34,7 +34,7 @@
 
       return Restangular.one('players', parts[parts.length - 1]);
     } else {
-      return $q.reject(name);
+      return $q.resolve(playerId);
     }
   }
 

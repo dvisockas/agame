@@ -3,12 +3,13 @@
 
   angular
     .module('game')
-    .config(config);
+    .config(configFn);
 
-  /** @ngInject */
-  function config($logProvider) {
-    // Enable log
-    $logProvider.debugEnabled(true);
+  configFn.$inject = ['RestangularProvider', 'localStorageServiceProvider'];
+  function configFn (RestangularProvider, localStorageServiceProvider) {
+    RestangularProvider.setBaseUrl('http://amapgame.herokuapp.com/v1');
+
+    localStorageServiceProvider.setPrefix('agame');
   }
 
 })();

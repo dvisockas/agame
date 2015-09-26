@@ -2,6 +2,15 @@
   'use strict';
 
   angular
-    .module('game', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'restangular', 'ui.router', 'ui.bootstrap']);
+    .module('game', [
+      'ngAnimate',
+      'ngCookies',
+      'ngTouch',
+      'ngSanitize',
+      'restangular',
+      'ui.router',
+      'ui.bootstrap',
+      'LocalStorageModule'
+    ]);
 
 })();

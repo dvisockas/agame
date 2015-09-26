@@ -5,7 +5,7 @@
     .module('game')
     .config(routeConfig);
 
-  /** @ngInject */
+  routeConfig.$inject = ['$stateProvider', '$urlRouterProvider'];
   function routeConfig($stateProvider, $urlRouterProvider) {
     $stateProvider
       .state('root', {
@@ -20,14 +20,20 @@
         url: '/become',
         templateUrl: 'app/components/player/player.html',
         controller: 'PlayerController'
-      })
+      });
 
     $urlRouterProvider.otherwise('/git-gud');
   }
 
-  ensurePlayer.$inject = ['Restangular', '$q'];
-  function ensurePlayer (Restangular, $q) {
-    return $q.resolve('dick');
+  ensurePlayer.$inject = ['Restangular', 'localStorageService', '$q'];
+  function ensurePlayer (Restangular, localStorageService, $q) {
+    var playerId = localStorageService.get('player-id');
+    
+    if (playerId) {
+      return Restangular.one('players', playerId);
+    } else {
+      return $q.reject(playerId);
+    }
   }
 
 })();

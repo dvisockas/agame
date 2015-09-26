@@ -95,22 +95,53 @@ body {
 
   button {
     background-color: #fdc905;
-    @include box-shadow(0 2px 4px rgba(0, 0, 0, 0.23));
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.23);
     color: #fff;
-
   }
 }
 
 #menu-navigation {
   position: absolute;
-  bottom: 100px;
-  background-color: #fff;
-  min-height: 4em;
-  min-width: 90%;
-  margin-left: 5%;
-  border-radius: .3em;
-  box-shadow: 2px 2px 2px #f3f3f7;
-  border: 1px solid #F5F2F2;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #353e49;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+
+  #name {
+    width: 100%;
+    line-height: 50px;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+  }
+
+  #user-meta {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 60px;
+
+    &::after {
+      content: '';
+      display: table;
+      clear: both;
+    }
+
+    > div {
+      float: left;
+      width: 50%;
+    }
+
+    .gold {
+      color: #fdc905;
+    }
+
+    .land {
+      color: #fff;
+    }
+  }
 }
 
 .leaflet-control-attribution.leaflet-control, .leaflet-control-zoom {

@@ -1,4 +1,12 @@
 <div id="menu-navigation" class="text-center" ng-show="object.id || options.length">
+
+  <div id="name"><span>Pavadinimas</span></div>
+
+  <div id="user-meta">
+    <div class="gold">Gold: 23</div>
+    <div class="land">Land: 43km</div>
+  </div>
+  
   <!-- Interacting with user -->
   <div ng-if="object.name">
     <div class="col-xs-12">User: {{ object.name }}</div>

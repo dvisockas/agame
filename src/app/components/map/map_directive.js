@@ -41,7 +41,7 @@ angular.module('game')
                 nearby.push(estate);
               }
             });
-            if (nearby.length) {
+            if (nearby.length > 1) {
               $rootScope.$broadcast('clickedMarker', nearby);
             } else {
               $rootScope.$broadcast('clickedMarker', e.target.options.player || e.target.options.estate);

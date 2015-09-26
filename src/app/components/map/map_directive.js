@@ -8,6 +8,9 @@ angular.module('game')
       }, // {} = isolate, true = child, false/undefined = no change
       restrict: 'A', // E = Element, A = Attribute, C = Class, M = Comment
       link: function ($scope, $elem, attrs) {
+
+        function onClick(e) {$rootScope.$broadcast('clickedMarker', e.target.options.player || e.target.options.estate)};
+
         function distance(lat1, lon1, lat2, lon2, unit) {
         	var radlat1 = Math.PI * lat1/180
         	var radlat2 = Math.PI * lat2/180
@@ -46,15 +49,14 @@ angular.module('game')
           }
         };
 
+
         function clickedMarker(user) {
 
         };
         var layer = new L.stamenTileLayer('toner'),
             map = new L.Map(attrs.id, {
               center: [$scope.player.latitude, $scope.player.longitude],
-              zoom: 1,
-              minZoom: 16,
-              maxBounds: getMaxBounds()
+              zoom: 1
             }),
             playerMarkers = {},
             buildingMarkers = {},
@@ -157,6 +159,7 @@ angular.module('game')
           map.removeLayer(marker);
           delete playerMarkers[user.id];
         }
+
 
         function getMaxBounds () {
           var player = $scope.player;

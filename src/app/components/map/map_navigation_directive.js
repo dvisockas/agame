@@ -42,6 +42,11 @@ angular.module('game')
           $scope.$apply();
         });
 
+        $scope.setActive = function (object) {
+          $scope.options = [];
+          $scope.object = object;
+        };
+
 
       }
     }

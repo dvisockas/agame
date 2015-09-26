@@ -116,6 +116,11 @@ body {
     font-family: 'Montserrat', sans-serif;
     font-size: 20px;
     font-weight: 400;
+    max-height: 150px;
+    overflow-y: scroll;
+    &::-webkit-scrollbar { 
+      display: none; 
+    }
   }
 
   .user-meta {

@@ -25,7 +25,7 @@
   </div>
 
   <div ng-if="options.length">
-    <p ng-repeat="option in options">
+    <p ng-repeat="option in options" ng-click='setActive(option)'>
       {{option.name || option.id}}
     </p>
   </div>

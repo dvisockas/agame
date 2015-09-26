@@ -5,11 +5,23 @@ angular.module('game')
         $scope.players = data.players;
         $scope.buildings = data.estates;
 
-        socket.on('user location changed', function (data) {
-          $scope.$broadcast('user-moved', data.user);
-        });
+        startListening();
       });
 
       gameWatcher();
     });
+
+    function startListening () {
+      socket.on('user location changed', function (data) {
+        $scope.$broadcast('user-moved', data.user);
+      });
+
+      socket.on('user joined', function (user) {
+        $scope.$broadcast('user-joined', user);
+      });
+
+      socket.on('user left', function (user) {
+        $scope.$broadcast('user-left', user);
+      });
+    }
   }]);

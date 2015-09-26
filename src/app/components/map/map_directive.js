@@ -17,13 +17,15 @@ angular.module('game')
             buildingMarkers = {},
             playerMarker;
 
+        map.addLayer(layer);
+
         var playerWatcher = $scope.$watch('players', function (playas) {
           if (playas) {
             angular.forEach(playas, function (playa) {
               var coords = [playa.latitude, playa.longitude]
               
               if (playa.id !== $scope.player.id) {
-                playerMarkers[playa.name] = L.marker(coords, {icon: peasantIcon}).addTo(map);
+                playerMarkers[playa.id] = L.marker(coords, {icon: peasantIcon}).addTo(map);
               }
             });
 
@@ -43,10 +45,10 @@ angular.module('game')
           }
         });
 
-        map.addLayer(layer);
-
         $scope.$on('position-changed', changeHandler);
         $scope.$on('user-moved', moveHandler);
+        $scope.$on('user-joined', joinHandler);
+        $scope.$on('user-left', leaveHandler);
 
         var playerIcon = L.icon({
           iconUrl: 'assets/images/angular.png',
@@ -90,11 +92,23 @@ angular.module('game')
         }
 
         function moveHandler (event, user) {
-          angular.forEach(playerMarkers, function (name, marker) {
-            if (user.name === name) {
+          angular.forEach(playerMarkers, function (id, marker) {
+            if (user.id === name) {
               marker.setLatLng([user.latitude, user.longitude]);
             }
           });
+        }
+
+        function joinHandler (event, user) {
+          $scope.players.push(user);
+          $scope.playerMarkers[user.id] = L.marker([user.latitude, user.longitude], {icon: peasantIcon}).addTo(map);
+        }
+
+        function leaveHandler (event, user) {
+          var index = $scope.players.indexOf(user);
+
+          $scope.players.splice(index, 1);
+          delete $scope.playerMarkers[user.id];
         }
       }
     };

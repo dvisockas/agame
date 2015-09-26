@@ -124,11 +124,12 @@ body {
     }
   }
 
-  .user-meta, .acions {
+  .user-meta, .acions, .options {
     font-family: 'Montserrat', sans-serif;
     font-size: 20px;
     font-weight: 400;
     line-height: 60px;
+    color: #fff;
 
     &::after {
       content: '';
@@ -139,7 +140,6 @@ body {
     > div {
       float: left;
       width: 50%;
-      color: #fff;
       cursor: pointer;
     }
 

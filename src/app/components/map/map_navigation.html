@@ -34,8 +34,8 @@
   </div>
 
   <div ng-if="options.length">
-    <p ng-repeat="option in options" ng-click='setActive(option)'>
-      {{option.name || option.id}}
+    <p ng-repeat="option in options" ng-click='setActive(option)' class="options">
+      {{ object.route === 'estates' ? "Estate: " : "User: " + option.name }}
     </p>
   </div>
 </div>

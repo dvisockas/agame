@@ -43,6 +43,8 @@ angular.module('game')
             });
             if (nearby.length) {
               $rootScope.$broadcast('clickedMarker', nearby);
+            } else {
+              $rootScope.$broadcast('clickedMarker', e.target.options.player || e.target.options.estate);
             }
           } else {
             $rootScope.$broadcast('clickedMarker', e.target.options.player || e.target.options.estate);

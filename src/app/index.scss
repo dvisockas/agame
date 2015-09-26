@@ -112,3 +112,7 @@ body {
   box-shadow: 2px 2px 2px #f3f3f7;
   border: 1px solid #F5F2F2;
 }
+
+.leaflet-control-attribution.leaflet-control, .leaflet-control-zoom {
+  display: none !important;
+}

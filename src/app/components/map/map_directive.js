@@ -86,7 +86,7 @@ angular.module('game')
             }).addTo(map);
           }
 
-          map.setView(coords, 20, {
+          map.setView(coords, 18, {
             animate: true
           });
         }

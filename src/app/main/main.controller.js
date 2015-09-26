@@ -20,12 +20,13 @@
       var coords = data.coords,
           latitude = coords.latitude,
           longitude = coords.longitude,
-          opts = { latitude: latitude, longitude: longitude };
+          opts = { latitude: latitude, longitude: longitude },
+          player = $scope.player;
 
-      $scope.player.latitude = latitude;
-      $scope.player.longitude = longitude;
+      player.latitude = latitude;
+      player.longitude = longitude;
 
-      socket.emit('location changed', $scope.player);
+      socket.emit('location changed', player);
 
       if (!$scope.players && !$scope.buildings) {
         Restangular.one('game').get(opts).then(function (data) {
@@ -34,7 +35,7 @@
         });
       }
 
-      Restangular.one('player', $scope.player.id).patch({ player: opts });
+      Restangular.one('player', player.id).patch({ player: opts });
 
       $scope.$broadcast('position-changed');
     }

@@ -7,7 +7,7 @@ angular.module('game')
       templateUrl: 'app/components/map/map_navigation.html',
       link: function ($scope, $elem, attrs) {
         $scope.$on('clickedMarker', function(e, data) {
-          $scope.questions = {};
+          $scope.options = [];
           $scope.object = {};
           if (angular.isArray(data)) {
             $scope.options = data;

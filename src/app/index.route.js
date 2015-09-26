@@ -12,29 +12,29 @@
       .state('root', {
         url: '/',
         absctract: true,
-        templateUrl: 'app/main/main.html',
         controller: 'MainController',
         controllerAs: 'main',
+        template: '<div class="container"><div ui-view></div></div>',
         resolve: {
           player: ensurePlayer
         }
       })
       .state('root.game', {
         url: '',
-        templateUrl: 'app/components/map.html',
+        templateUrl: 'app/components/map/map.html',
         controller: 'MapController'
       })
       .state('player', {
         url: '/git-gud',
-        templateUrl: 'app/components/player.html',
+        templateUrl: 'app/components/player/player.html',
         controller: 'PlayerController'
       })
 
     $urlRouterProvider.otherwise('/');
   }
 
-  function ensurePlayer ($http) {
-    
+  function ensurePlayer ($http, $q) {
+    return $q.reject('dick');
   }
 
   function runFn ($rootScope, $state) {

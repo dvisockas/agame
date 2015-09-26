@@ -36,7 +36,7 @@ angular.module('game')
                 nearby.push(player);
               }
             });
-            angular.forEach($scope.estates, function(estate) {
+            angular.forEach($scope.buildings, function(estate) {
               if (distance(estate.latitude, estate.longitude, obj.lat, obj.lng) < 0.02) {
                 nearby.push(estate);
               }

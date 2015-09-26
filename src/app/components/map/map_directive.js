@@ -8,6 +8,10 @@ angular.module('game')
       }, // {} = isolate, true = child, false/undefined = no change
       restrict: 'A', // E = Element, A = Attribute, C = Class, M = Comment
       link: function ($scope, $elem, attrs) {
+        function onClick(e) {clickedMarker(e.target.options.player)};
+        function clickedMarker(user) {
+          alert(user.name);
+        };
         var layer = new L.stamenTileLayer('toner'),
             map = new L.Map(attrs.id, {
               center: [$scope.player.latitude, $scope.player.longitude],
@@ -24,7 +28,7 @@ angular.module('game')
             angular.forEach(playas, function (playa) {
               var coords = [playa.latitude, playa.longitude]
 
-              playerMarkers[playa.id] = L.marker(coords, {icon: peasantIcon}).addTo(map);
+              playerMarkers[playa.id] = L.marker(coords, {icon: peasantIcon, player: playa}).addTo(map).on('click', onClick);
             });
 
             playerWatcher();
@@ -49,8 +53,8 @@ angular.module('game')
         $scope.$on('user-left', leaveHandler);
 
         var playerIcon = L.icon({
-          iconUrl: 'assets/images/angular.png',
-          iconSize:     [100, 100], // size of the icon
+          iconUrl: 'assets/images/current.gif',
+          iconSize:     [75, 75], // size of the icon
           iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
           shadowAnchor: [4, 62],  // the same for the shadow
           popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
@@ -58,7 +62,7 @@ angular.module('game')
 
         var peasantIcon = L.icon({
           iconUrl: 'assets/images/yeoman.png',
-          iconSize:     [80, 80], // size of the icon
+          iconSize:     [40, 40], // size of the icon
           iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
           shadowAnchor: [4, 62],  // the same for the shadow
           popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
@@ -66,7 +70,7 @@ angular.module('game')
 
         var buildingIcon = L.icon({
           iconUrl: 'assets/images/jasmine.png',
-          iconSize:     [80, 80], // size of the icon
+          iconSize:     [40, 40], // size of the icon
           iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
           shadowAnchor: [4, 62],  // the same for the shadow
           popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
@@ -75,12 +79,15 @@ angular.module('game')
         function changeHandler () {
           var coords = [$scope.player.latitude, $scope.player.longitude];
 
+          // function onClick(e) {debugger;alert(this.getLatLng());};
+
           if (playerMarker) {
             playerMarker.setLatLng(coords);
           } else {
             playerMarker = L.marker(coords, {
               icon: playerIcon,
-              zIndexOffset: 1000
+              zIndexOffset: 1000,
+              player: $scope.player
             }).addTo(map);
           }
 
@@ -101,7 +108,7 @@ angular.module('game')
           var user = data.user;
 
           $scope.players.push(user);
-          playerMarkers[user.id] = L.marker([user.latitude, user.longitude], {icon: peasantIcon}).addTo(map);
+          playerMarkers[user.id] = L.marker([user.latitude, user.longitude], {icon: peasantIcon, player: user}).on('click', onClick);;
         }
 
         function leaveHandler (event, data) {

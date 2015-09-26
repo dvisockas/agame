@@ -61,3 +61,15 @@ $icon-font-path: "../../bower_components/bootstrap-sass-official/assets/fonts/bo
 
   }
 }
+
+#menu-navigation {
+  position: absolute;
+  bottom: 100px;
+  background-color: #fff;
+  min-height: 4em;
+  min-width: 90%;
+  margin-left: 5%;
+  border-radius: .3em;
+  box-shadow: 2px 2px 2px #f3f3f7;
+  border: 1px solid #F5F2F2;
+}

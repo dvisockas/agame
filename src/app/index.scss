@@ -106,6 +106,8 @@ body {
   left: 0;
   right: 0;
   background-color: #353e49;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  transition: .5s all linear;
 
   .name {
     width: 100%;
@@ -115,6 +117,12 @@ body {
     font-size: 20px;
     font-weight: 400;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    max-height: 150px;
+    overflow-y: scroll;
+    
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
 
   .user-meta {

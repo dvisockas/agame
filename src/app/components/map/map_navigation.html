@@ -1,7 +1,7 @@
 <div id="menu-navigation" class="text-center" ng-show="object.id || options.length">
 
   <!-- Interacting with user -->
-  <div ng-if="object.name">
+  <div ng-if="object.route === 'players'">
     <div class="name"><span>User: {{ object.name }}</span></div>
     <!--<div class="col-xs-4">Užpulti</div>-->
     <!--<div class="col-xs-4">Susidraugauti</div>-->
@@ -25,7 +25,7 @@
   </div>
 
   <div ng-if="options.length">
-    <p ng-repeat="option in options">
+    <p ng-repeat="option in options" ng-click='setActive(option)'>
       {{option.name || option.id}}
     </p>
   </div>

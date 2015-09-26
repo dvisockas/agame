@@ -17,15 +17,18 @@
     });
 
     function onSuccess (data) {
-      var coords = data.coords;
+      var coords = data.coords,
+          latitude = coords.latitude,
+          longitude = coords.longitude,
+          opts = { latitude: latitude, longitude: longitude };
 
-      $scope.player.latitude = coords.latitude;
-      $scope.player.longitude = coords.longitude;
+      $scope.player.latitude = latitude;
+      $scope.player.longitude = longitude;
 
       socket.emit('location changed', $scope.player);
 
       if (!$scope.players && !$scope.buildings) {
-        Restangular.one('game').get({ latitude: $scope.player.latitude, longitude: $scope.player.longitude }).then(function (data) {
+        Restangular.one('game').get(opts).then(function (data) {
           $scope.players = data.players;
           $scope.buildings = data.estates;
           socket.on('location changed', function(data) {
@@ -34,7 +37,7 @@
         });
       }
 
-      Restangular.one('player', $scope.player.id).patch();
+      Restangular.one('player', $scope.player.id).patch({ player: opts });
 
       $scope.$broadcast('position-changed');
     }

@@ -5,7 +5,6 @@
     .module('game')
     .controller('MainController', MainController);
 
-  /** @ngInject */
   MainController.$inject = ['$scope', 'player', 'Restangular', '$window', 'socket'];
   function MainController ($scope, player, Restangular, $window, socket) {
     $scope.player = player;

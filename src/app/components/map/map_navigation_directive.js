@@ -8,7 +8,7 @@ angular.module('game')
       link: function ($scope, $elem, attrs) {
         var delta;
         $swipe.bind($elem, {
-          'start': function(coords) {
+          start: function(coords) {
             startX = coords.x;
             pointX = coords.y;
           },
@@ -26,18 +26,21 @@ angular.module('game')
             }
             console.log('ended');
           },
-          'cancel': function(coords) {
+          cancel: function(coords) {
             console.log('canceled');
           }
-          });
+        });
+
         $scope.$on('clickedMarker', function(e, data) {
           $scope.options = [];
           $scope.object = {};
+
           if (angular.isArray(data)) {
             $scope.options = data;
           } else {
             $scope.object = data;
           }
+
           $scope.$apply();
         });
 

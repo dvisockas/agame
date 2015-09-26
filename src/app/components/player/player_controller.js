@@ -10,6 +10,7 @@ angular.module('game')
           });
 
           Restangular.all('players').post({ player: $scope.player }).then(function (player) {
+            console.log(player);
             localStorageService.set('player-name', player.name);
 
             $state.go('game');

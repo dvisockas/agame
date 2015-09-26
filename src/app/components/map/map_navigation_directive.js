@@ -11,14 +11,13 @@ angular.module('game')
           'start': function(coords) {
             startX = coords.x;
             pointX = coords.y;
-            console.log(coords);
           },
           'move': function(coords) {
-            var delta = coords.x - pointX;
+            delta = coords.x - pointX;
             $elem.children()[0].style.transform = "translate3d(" + delta + "px, 0, 0);";
           },
           'end': function(coords) {
-            if (delta < 200) {
+            if (~~delta < 300) {
               $elem.children()[0].style.transform = "";
             } else {
               $scope.options = [];

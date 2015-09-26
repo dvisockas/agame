@@ -101,14 +101,14 @@ angular.module('game')
 
         function joinHandler (event, user) {
           $scope.players.push(user);
-          $scope.playerMarkers[user.id] = L.marker([user.latitude, user.longitude], {icon: peasantIcon}).addTo(map);
+          playerMarkers[user.id] = L.marker([user.latitude, user.longitude], {icon: peasantIcon}).addTo(map);
         }
 
         function leaveHandler (event, user) {
           var index = $scope.players.indexOf(user);
 
           $scope.players.splice(index, 1);
-          delete $scope.playerMarkers[user.id];
+          delete playerMarkers[user.id];
         }
       }
     };

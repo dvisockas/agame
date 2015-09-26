@@ -21,8 +21,17 @@ angular.module('game')
           maximumAge: 1000
         });
 
+        var greenIcon = L.icon({
+          iconUrl: 'assets/images/angular.png',
+          iconSize:     [95, 95], // size of the icon
+          iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+          shadowAnchor: [4, 62],  // the same for the shadow
+          popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+        });
+
         function onSuccess (data) {
           var coords = data.coords;
+          if (coords) L.marker([coords.latitude, coords.longitude], {icon: greenIcon}).addTo(map);
 
           map.setView([coords.latitude, coords.longitude], 20, {
             animate: true

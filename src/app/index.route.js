@@ -28,11 +28,11 @@
   ensurePlayer.$inject = ['Restangular', 'localStorageService', '$q'];
   function ensurePlayer (Restangular, localStorageService, $q) {
     var playerId = localStorageService.get('player-id');
-    
+
     if (playerId) {
       return Restangular.one('players', playerId);
     } else {
-      return $q.reject(playerId);
+      return $q.resolve(playerId);
     }
   }
 

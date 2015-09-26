@@ -105,10 +105,12 @@ angular.module('game')
         }
 
         function leaveHandler (event, data) {
+          console.log(data)
           var user = data.user,
-              index = $scope.players.indexOf(user);
+              marker = playerMarkers[user.id];
 
-          $scope.players.splice(index, 1);
+          $scope.players.splice($scope.players.indexOf(user), 1);
+          map.removeLayer(marker);
           delete playerMarkers[user.id];
         }
       }

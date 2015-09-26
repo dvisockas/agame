@@ -18,11 +18,12 @@ angular.module('game')
 
         var playerWatcher = $scope.$watch('players', function (playas) {
           if (playas) {
-            console.log(playas)
             angular.forEach(playas, function (playa) {
               var coords = [playa.latitude, playa.longitude]
               
-              markers[playa.name] = L.marker(coords, {icon: peasantIcon}).addTo(map);
+              if (playa.id !== $scope.player.id) {
+                markers[playa.name] = L.marker(coords, {icon: peasantIcon}).addTo(map);
+              }
             });
 
             playerWatcher();
@@ -75,7 +76,10 @@ angular.module('game')
           if (playerMarker) {
             playerMarker.setLatLng(coords);
           } else {
-            playerMarker = L.marker(coords, {icon: playerIcon}).addTo(map);
+            playerMarker = L.marker(coords, {
+              icon: playerIcon,
+              zIndexOffset: 1000
+            }).addTo(map);
           }
 
           map.setView(coords, 20, {

@@ -27,7 +27,12 @@ angular.module('game')
         }
 
         function onClick(e) {
-          var obj = this.getLatLng();
+          var obj;
+          if (this.getLatLng) {
+            obj = this.getLatLng();
+          } else {
+            obj = {};
+          }
 
           if (($scope.players.length || $scope.estates.length) && obj.lat) {
             var nearby = [];

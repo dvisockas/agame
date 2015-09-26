@@ -8,8 +8,42 @@ angular.module('game')
       }, // {} = isolate, true = child, false/undefined = no change
       restrict: 'A', // E = Element, A = Attribute, C = Class, M = Comment
       link: function ($scope, $elem, attrs) {
+        function distance(lat1, lon1, lat2, lon2, unit) {
+        	var radlat1 = Math.PI * lat1/180
+        	var radlat2 = Math.PI * lat2/180
+        	var radlon1 = Math.PI * lon1/180
+        	var radlon2 = Math.PI * lon2/180
+        	var theta = lon1-lon2
+        	var radtheta = Math.PI * theta/180
+        	var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
+        	dist = Math.acos(dist)
+        	dist = dist * 180/Math.PI
+        	dist = dist * 60 * 1.1515
+        	dist = dist * 1.609344
+        	return dist
+        }
+
         function onClick(e) {
-          $rootScope.$broadcast('clickedMarker', e.target.options.player || e.target.options.estate)
+          var obj = this.getLatLng();
+
+          if ($scope.players.length || $scope.estates.length) {
+            var nearby = [];
+            angular.forEach($scope.players, function(player) {
+              if (distance(player.latitude, player.longitude, obj.lat, obj.lng) < 0.02) {
+                nearby.push(player);
+              }
+            });
+            angular.forEach($scope.estates, function(estate) {
+              if (distance(estate.latitude, estate.longitude, obj.lat, obj.lng) < 0.02) {
+                nearby.push(estate);
+              }
+            });
+            if (nearby.length) {
+              $rootScope.$broadcast('clickedMarker', nearby);
+            }
+          } else {
+            $rootScope.$broadcast('clickedMarker', e.target.options.player || e.target.options.estate);
+          }
         };
 
         function clickedMarker(user) {

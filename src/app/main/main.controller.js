@@ -28,6 +28,9 @@
         Restangular.one('game').get({ latitude: $scope.player.latitude, longitude: $scope.player.longitude }).then(function (data) {
           $scope.players = data.players;
           $scope.buildings = data.estates;
+          socket.on('location changed', function(data) {
+            debugger;
+          });
         });
       }
 

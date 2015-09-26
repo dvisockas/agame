@@ -1,5 +1,5 @@
 angular.module('game').factory('socket', function($rootScope) {
-  var socket = io.connect('http://8437f2a3.ngrok.io/');
+  var socket = io.connect('http://128.199.48.135:1234/');
   return {
     on: function(eventName, callback) {
       socket.on(eventName, function() {

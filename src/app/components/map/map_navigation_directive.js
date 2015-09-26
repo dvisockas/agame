@@ -8,16 +8,16 @@ angular.module('game')
       link: function ($scope, $elem, attrs) {
         var delta;
         $swipe.bind($elem, {
-          'start': function(coords) {
+          start: function(coords) {
             startX = coords.x;
             pointX = coords.y;
             console.log(coords);
           },
-          'move': function(coords) {
+          move: function(coords) {
             var delta = coords.x - pointX;
             $elem.children()[0].style.transform = "translate3d(" + delta + "px, 0, 0);";
           },
-          'end': function(coords) {
+          end: function(coords) {
             if (delta < 200) {
               $elem.children()[0].style.transform = "";
             } else {
@@ -27,18 +27,21 @@ angular.module('game')
             }
             console.log('ended');
           },
-          'cancel': function(coords) {
+          cancel: function(coords) {
             console.log('canceled');
           }
-          });
+        });
+
         $scope.$on('clickedMarker', function(e, data) {
           $scope.options = [];
           $scope.object = {};
+
           if (angular.isArray(data)) {
             $scope.options = data;
           } else {
             $scope.object = data;
           }
+          
           $scope.$apply();
         });
 

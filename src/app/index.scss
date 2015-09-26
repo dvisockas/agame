@@ -143,8 +143,17 @@ body {
       cursor: pointer;
     }
 
+    .cost {
+      font-size: 15px;
+    }
+
     .gold {
       color: #fdc905;
+    }
+
+    .build {
+      line-height: 18px;
+      padding-top: 15px;
     }
 
     .attack {

@@ -1,6 +1,16 @@
-<div id="menu-navigation" class="text-center">
-  <div class="col-xs-12">User: {{ user.name }}</div>
-  <div class="col-xs-4">yo</div>
-  <div class="col-xs-4">sup</div>
-  <div class="col-xs-4">ka?</div>
+<div id="menu-navigation" class="text-center" ng-show="object.id">
+  <!-- Interacting with user -->
+  <div ng-if="object.name">
+    <div class="col-xs-12">User: {{ object.name }}</div>
+    <div class="col-xs-4">yo</div>
+    <div class="col-xs-4">sup</div>
+    <div class="col-xs-4">ka?</div>
+  </div>
+  <!-- Interacting with estate -->
+  <div ng-if="object.estate_type_id">
+    <div class="col-xs-12">Estate: {{ object.id }}</div>
+    <div class="col-xs-4">yo</div>
+    <div class="col-xs-4">sup</div>
+    <div class="col-xs-4">ka?</div>
+  </div>
 </div>

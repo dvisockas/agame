@@ -1,5 +1,5 @@
 angular.module('game')
-  .directive('map', ['$window', function ($window) {
+  .directive('map', ['$window', '$rootScope', function ($window, $rootScope) {
     return {
       scope: {
         player: '=',
@@ -8,9 +8,10 @@ angular.module('game')
       }, // {} = isolate, true = child, false/undefined = no change
       restrict: 'A', // E = Element, A = Attribute, C = Class, M = Comment
       link: function ($scope, $elem, attrs) {
-        function onClick(e) {clickedMarker(e.target.options.player)};
+        function onClick(e) {$rootScope.$broadcast('clickedMarker', e.target.options.player || e.target.options.estate)};
+
         function clickedMarker(user) {
-          alert(user.name);
+
         };
         var layer = new L.stamenTileLayer('toner'),
             map = new L.Map(attrs.id, {
@@ -40,7 +41,7 @@ angular.module('game')
             angular.forEach(buildings, function (building) {
               var coords = [building.latitude, building.longitude];
 
-              buildingMarkers[building.id] = L.marker(coords, {icon: buildingIcon}).addTo(map);
+              buildingMarkers[building.id] = L.marker(coords, {icon: buildingIcon, estate: building}).addTo(map).on('click', onClick);
             });
 
             buildingsWatcher();
@@ -53,7 +54,7 @@ angular.module('game')
         $scope.$on('user-left', leaveHandler);
 
         var playerIcon = L.icon({
-          iconUrl: 'assets/images/current.gif',
+          iconUrl: 'assets/images/angular.png',
           iconSize:     [75, 75], // size of the icon
           iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
           shadowAnchor: [4, 62],  // the same for the shadow
@@ -108,7 +109,7 @@ angular.module('game')
           var user = data.user;
 
           $scope.players.push(user);
-          playerMarkers[user.id] = L.marker([user.latitude, user.longitude], {icon: peasantIcon, player: user}).on('click', onClick);;
+          playerMarkers[user.id] = L.marker([user.latitude, user.longitude], {icon: peasantIcon, player: user}).on('click', onClick);
         }
 
         function leaveHandler (event, data) {

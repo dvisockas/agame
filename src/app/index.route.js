@@ -3,8 +3,7 @@
 
   angular
     .module('game')
-    .config(routeConfig)
-    .run(runFn);
+    .config(routeConfig);
 
   /** @ngInject */
   function routeConfig($stateProvider, $urlRouterProvider) {
@@ -20,27 +19,22 @@
         }
       })
       .state('root.game', {
-        url: '',
+        url: '/git-gud',
         templateUrl: 'app/components/map/map.html',
         controller: 'MapController'
       })
       .state('player', {
-        url: '/git-gud',
+        url: '/become',
         templateUrl: 'app/components/player/player.html',
         controller: 'PlayerController'
       })
 
-    $urlRouterProvider.otherwise('/');
+    $urlRouterProvider.otherwise('/git-gud');
   }
 
-  function ensurePlayer ($http, $q) {
-    return $q.reject('dick');
-  }
-
-  function runFn ($rootScope, $state) {
-    $rootScope.$on('$stateChangeError', function (_event, _toState, _toParams, _fromState, _fromParams, _error) {
-      $state.go('player');
-    });
+  ensurePlayer.$inject = ['Restangular', '$q'];
+  function ensurePlayer (Restangular, $q) {
+    return $q.resolve('dick');
   }
 
 })();

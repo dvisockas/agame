@@ -3,12 +3,14 @@
 
   angular
     .module('game')
-    .run(runBlock);
+    .run(runFn);
 
   /** @ngInject */
-  function runBlock($log) {
-
-    $log.debug('runBlock end');
+  runFn.$inject = ['$rootScope', '$state'];
+  function runFn ($rootScope, $state) {
+    $rootScope.$on('$stateChangeError', function () {
+      $state.go('player');
+    });
   }
 
 })();

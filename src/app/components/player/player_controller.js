@@ -1,4 +1,4 @@
 angular.module('game')
-  .controller('PlayerController', ['$scope', '$http', function ($scope, $http) {
-    console.log($http)
+  .controller('PlayerController', ['$scope', 'Restangular', function ($scope, Restangular) {
+    console.log($scope)
   }])

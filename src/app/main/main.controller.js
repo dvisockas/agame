@@ -10,6 +10,12 @@
   function MainController ($scope, player, Restangular, $window, socket) {
     $scope.player = player;
 
+    socket.on('active users', function (users) {
+      $scope.players = users;
+    });
+
+    socket.emit('login', $scope.player);
+
     var watcher = $window.navigator.geolocation.watchPosition(onSuccess, onError, {
       enableHighAccuracy: true,
       timeout: 10000,

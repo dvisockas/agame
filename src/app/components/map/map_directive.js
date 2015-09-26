@@ -24,9 +24,7 @@ angular.module('game')
             angular.forEach(playas, function (playa) {
               var coords = [playa.latitude, playa.longitude]
 
-              if (playa.id !== $scope.player.id) {
-                playerMarkers[playa.id] = L.marker(coords, {icon: peasantIcon}).addTo(map);
-              }
+              playerMarkers[playa.id] = L.marker(coords, {icon: peasantIcon}).addTo(map);
             });
 
             playerWatcher();
@@ -93,19 +91,22 @@ angular.module('game')
 
         function moveHandler (event, user) {
           angular.forEach(playerMarkers, function (id, marker) {
-            if (user.id === name) {
+            if (user.id === id) {
               marker.setLatLng([user.latitude, user.longitude]);
             }
           });
         }
 
-        function joinHandler (event, user) {
+        function joinHandler (event, data) {
+          var user = data.user;
+
           $scope.players.push(user);
           playerMarkers[user.id] = L.marker([user.latitude, user.longitude], {icon: peasantIcon}).addTo(map);
         }
 
-        function leaveHandler (event, user) {
-          var index = $scope.players.indexOf(user);
+        function leaveHandler (event, data) {
+          var user = data.user,
+              index = $scope.players.indexOf(user);
 
           $scope.players.splice(index, 1);
           delete playerMarkers[user.id];

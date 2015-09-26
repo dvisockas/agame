@@ -73,3 +73,7 @@ $icon-font-path: "../../bower_components/bootstrap-sass-official/assets/fonts/bo
   box-shadow: 2px 2px 2px #f3f3f7;
   border: 1px solid #F5F2F2;
 }
+
+.leaflet-bottom.leaflet-right, .leaflet-control-zoom {
+  display: none !important;
+}

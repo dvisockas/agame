@@ -8,7 +8,9 @@ angular.module('game')
       }, // {} = isolate, true = child, false/undefined = no change
       restrict: 'A', // E = Element, A = Attribute, C = Class, M = Comment
       link: function ($scope, $elem, attrs) {
-        function onClick(e) {$rootScope.$broadcast('clickedMarker', e.target.options.player || e.target.options.estate)};
+        function onClick(e) {
+          $rootScope.$broadcast('clickedMarker', e.target.options.player || e.target.options.estate)
+        };
 
         function clickedMarker(user) {
 
@@ -124,7 +126,7 @@ angular.module('game')
         }
 
         function getMaxBounds () {
-          
+
         }
       }
     };

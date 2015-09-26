@@ -1,8 +1,12 @@
 angular.module('game')
   .controller('MapController', ['$scope', 'Restangular', 'socket', function ($scope, Restangular, socket) {
     var gameWatcher = $scope.$watchGroup(['player.latitude', 'player.longitude'], function (coords) {
-      Restangular.one('game').get({ latitude: coords[0], longitude: coords[1], distance: 0.5 }).then(function (data) {
-        $scope.buildings = data.estates;
+      Restangular.all('estates').getList({
+        latitude: coords[0],
+        longitude: coords[1],
+        distance: 0.5
+      }).then(function (estates) {
+        $scope.buildings = estates;
       }).then(startListening);
 
       gameWatcher();

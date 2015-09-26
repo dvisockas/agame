@@ -80,8 +80,6 @@ angular.module('game')
         function changeHandler () {
           var coords = [$scope.player.latitude, $scope.player.longitude];
 
-          // function onClick(e) {debugger;alert(this.getLatLng());};
-
           if (playerMarker) {
             playerMarker.setLatLng(coords);
           } else {
@@ -90,11 +88,11 @@ angular.module('game')
               zIndexOffset: 1000,
               player: $scope.player
             }).addTo(map);
-          }
 
-          map.setView(coords, 18, {
-            animate: true
-          });
+            map.setView(coords, 18, {
+              animate: true
+            });
+          }
         }
 
         function moveHandler (event, user) {
@@ -113,10 +111,12 @@ angular.module('game')
         }
 
         function leaveHandler (event, data) {
+          console.log(data)
           var user = data.user,
-              index = $scope.players.indexOf(user);
+              marker = playerMarkers[user.id];
 
-          $scope.players.splice(index, 1);
+          $scope.players.splice($scope.players.indexOf(user), 1);
+          map.removeLayer(marker);
           delete playerMarkers[user.id];
         }
       }

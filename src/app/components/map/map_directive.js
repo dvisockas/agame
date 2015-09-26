@@ -16,7 +16,9 @@ angular.module('game')
         var layer = new L.stamenTileLayer('toner'),
             map = new L.Map(attrs.id, {
               center: [$scope.player.latitude, $scope.player.longitude],
-              zoom: 1
+              zoom: 1,
+              minZoom: 16,
+              maxBounds: getMaxBounds()
             }),
             playerMarkers = {},
             buildingMarkers = {},
@@ -119,6 +121,10 @@ angular.module('game')
           $scope.players.splice($scope.players.indexOf(user), 1);
           map.removeLayer(marker);
           delete playerMarkers[user.id];
+        }
+
+        function getMaxBounds () {
+          
         }
       }
     };

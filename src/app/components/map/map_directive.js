@@ -68,18 +68,18 @@ angular.module('game')
 
         var peasantIcon = L.icon({
           iconUrl: 'assets/images/yeoman.png',
-          iconSize:     [40, 40], // size of the icon
-          iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
-          shadowAnchor: [4, 62],  // the same for the shadow
-          popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+          iconSize:     [40, 40],
+          iconAnchor:   [22, 94],
+          shadowAnchor: [4, 62], 
+          popupAnchor:  [-3, -76]
         });
 
         var buildingIcon = L.icon({
           iconUrl: 'assets/images/jasmine.png',
-          iconSize:     [40, 40], // size of the icon
-          iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
-          shadowAnchor: [4, 62],  // the same for the shadow
-          popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+          iconSize:     [40, 40],
+          iconAnchor:   [22, 94],
+          shadowAnchor: [4, 62], 
+          popupAnchor:  [-3, -76]
         });
 
         function changeHandler () {
@@ -126,7 +126,11 @@ angular.module('game')
         }
 
         function getMaxBounds () {
+          var player = $scope.player;
 
+          if (player) {
+            
+          }
         }
       }
     };

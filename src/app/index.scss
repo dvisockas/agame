@@ -161,17 +161,17 @@ body {
     }
   }
 
+  .disabled {
+    pointer-events: none;
+    color: grey;
+    &:hover {
+      background-color: #353e49;
+    }
+  }
   .user-meta.clickable {
     cursor: pointer;
     &:hover {
       background-color: darkmagenta;
-    }
-    &.disabled {
-      pointer-events: none;
-      color: grey;
-      &:hover {
-        background-color: #353e49;
-      }
     }
   }
 }

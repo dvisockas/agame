@@ -9,7 +9,7 @@ angular.module('game')
       restrict: 'A', // E = Element, A = Attribute, C = Class, M = Comment
       link: function ($scope, $elem, attrs) {
 
-        function distance(lat1, lon1, lat2, lon2, unit) {
+        function distance(lat1, lon1, lat2, lon2) {
         	var radlat1 = Math.PI * lat1/180
         	var radlat2 = Math.PI * lat2/180
         	var radlon1 = Math.PI * lon1/180

@@ -21,10 +21,10 @@
         <div class="land">Land: {{ object.area }}U</div>
       </div>
       <div class="user-meta" ng-if='object.player_id !== player.id'>
-        <div class="build text-center" ng-click='getEstateTypes(object)' ng-if='!object.player_id'>
+        <div class="build text-center" ng-click='getEstateTypes(object)' ng-if='!object.player' ng-class='{ disabled: !nearby(object) }'>
           Statyti trobą
         </div>
-        <div class="attack text-center text-danger" ng-click="attack(object)">Atakuoti trobą</div>
+        <div class="attack text-center text-danger" ng-click="attack(object)" ng-class='{ disabled: !nearby(object) }'>Atakuoti trobą</div>
       </div>
     </div>
     <div class='user-meta clickable' ng-class='{ disabled: !canAfford(type) }' ng-repeat='type in estateTypes' ng-click='buyEstate(type, object)'>

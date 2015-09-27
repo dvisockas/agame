@@ -89,16 +89,26 @@ angular.module('game')
 
         var whoWon = function(action1, action2) {
             if (action1 == action2)
-                console.log("Tie");
+              console.log("Tie");
             else if (
-                    action1 == 1 && action2 == 3 ||
-                    action1 == 3 && action2 == 2 ||
-                    action1 == 2 && action2 == 1
+              action1 == 1 && action2 == 3 ||
+              action1 == 3 && action2 == 2 ||
+              action1 == 2 && action2 == 1
             ) {
-                console.log("You won");
+              Restangular.all('players').customPUT({ attack: { 
+                winner_id: $scope.player.id,
+                loser_id: $scope.challenger.id
+              }}, 'attack').then(function (data) {
+                console.log(data)
+              })
+            } else {
+              Restangular.all('players').customPUT({ attack: { 
+                loser_id: $scope.player.id,
+                winner_id: $scope.challenger.id
+              }}, 'attack').then(function (data) {
+                console.log(data)
+              })
             }
-            else
-                console.log("You lost");
         }
 
         $scope.respondToChallenge = function (accepted) {

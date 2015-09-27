@@ -24,7 +24,7 @@
         <div class="land">Land: 43km</div>
       </div>
       <div class="user-meta" ng-if='object.player_id !== player.id'>
-        <div class="build text-center" ng-click='getEstateTypes(object)'>
+        <div class="build text-center" ng-click='getEstateTypes(object)' ng-if='!object.player_id'>
           Statyti trobą
         </div>
         <div class="attack text-center text-danger" ng-click="attack(object)">Atakuoti trobą</div>

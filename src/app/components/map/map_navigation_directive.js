@@ -25,6 +25,7 @@ angular.module('game')
         };
 
         socket.on('rps get invite', function (data) {
+          console.log(data)
           if ($scope.player.id === data.user.id) {
             $scope.challenged = true;
             $scope.challenger = data.attacker;

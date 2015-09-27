@@ -118,7 +118,7 @@ angular.module('game')
 
         var playerIcon = L.icon({
           iconUrl: 'assets/images/current-user.png',
-          iconSize:     [75, 75], // size of the icon
+          iconSize:     [30, 30], // size of the icon
           iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
           shadowAnchor: [4, 62],  // the same for the shadow
           popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
@@ -126,7 +126,7 @@ angular.module('game')
 
         var peasantIcon = L.icon({
           iconUrl: 'assets/images/other-user.png',
-          iconSize:     [40, 40],
+          iconSize:     [30, 30],
           iconAnchor:   [22, 94],
           shadowAnchor: [4, 62],
           popupAnchor:  [-3, -76]
@@ -146,11 +146,11 @@ angular.module('game')
           if (playerMarker) {
             playerMarker.setLatLng(coords);
           } else {
-            // playerMarker = L.marker(coords, {
-            //   icon: playerIcon,
-            //   zIndexOffset: 1000,
-            //   player: $scope.player
-            // }).addTo(map);
+            playerMarker = L.marker(coords, {
+              icon: playerIcon,
+              zIndexOffset: 1000,
+              player: $scope.player
+            }).addTo(map);
 
             map.setView(coords, 18, {
               animate: true

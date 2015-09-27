@@ -34,21 +34,27 @@
       </div>
       <div class="user-meta" ng-if='object.player_id !== player.id'>
 
-        <div class="build text-center" ng-click='getEstateTypes(object)' ng-if='!object.player' ng-class='{ disabled: !nearby(object) }'>
+        <div class="build text-center" ng-click='getEstateTypes(object)' ng-if='!object.player'
+             ng-class='{ disabled: !nearby(object) }'>
 
           Statyti trobą
         </div>
-        <div class="attack text-center text-danger" ng-click="attack(object)" ng-class='{ disabled: !nearby(object) }' ng-if='object.player.id !== player.id'>Atakuoti trobą</div>
+        <div class="attack text-center text-danger" ng-click="attack(object)" ng-class='{ disabled: !nearby(object) }'
+             ng-if='object.player.id !== player.id'>Atakuoti trobą
+        </div>
       </div>
     </div>
-    <div class='user-meta clickable' ng-class='{ disabled: !canAfford(type) }' ng-repeat='type in estateTypes' ng-click='buyEstate(type, object)'>
+    <div class='user-meta clickable' ng-class='{ disabled: !canAfford(type) }' ng-repeat='type in estateTypes'
+         ng-click='buyEstate(type, object)'>
       {{ type.name }}
     </div>
   </div>
+</div>
 
-  <div ng-if="options.length">
-    <p ng-repeat="option in options" ng-click='setActive(option)' class="options">
-      {{ (option.route === 'estates' ? "Estate: " : "User: ") + option.name }}
-    </p>
-  </div>
+<div id="cards" ng-if="options.length">
+  <ul>
+    <li ng-repeat="option in options" ng-click='setActive(option)' class="options">
+      {{ (option.route === 'estates' ? "" : "") + option.name }}
+    </li>
+  </ul>
 </div>

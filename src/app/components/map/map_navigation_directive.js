@@ -103,8 +103,8 @@ angular.module('game')
               action1 == 2 && action2 == 1
             ) {
               $scope.message = 'You won!';
-              // Restangular.all('players').customOperation('patch', 'attack', { 
-              //   attack: { 
+              // Restangular.all('players').customOperation('patch', 'attack', {
+              //   attack: {
               //     winner_id: $scope.player.id,
               //     loser_id: $scope.challenger.id
               //   }
@@ -113,8 +113,8 @@ angular.module('game')
               // })
             } else {
               $scope.message = 'You lost..';
-              // Restangular.all('players').customOperation('patch', 'attack', { 
-              //   attack: { 
+              // Restangular.all('players').customOperation('patch', 'attack', {
+              //   attack: {
               //     loser_id: $scope.player.id,
               //     winner_id: $scope.challenger.id
               //   }
@@ -122,6 +122,7 @@ angular.module('game')
               //   console.log(data)
               // })
             }
+            // $scope.object = {};
 
             $timeout(function () {
               delete $scope.message;

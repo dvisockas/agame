@@ -78,12 +78,22 @@
       </ul>
     </div>
   </div>
+  <div class="cards" ng-if="message">
+    <ul>
+      <li ng-if="message">
+        {{ message }}
+      </li>
+    </ul>
+  </div>
   <div ng-if="object.route === 'players'">
-    <div class="cards" ng-if="object && object.id != player.id && !challenger">
+    <div class="cards" ng-if="object && object.id != player.id && !challenger && !message">
       <ul>
+        <!-- <li ng-if="message">
+          {{ message }}
+        </li> -->
         <li class="attack attack-estate text-center options" ng-click="attack(object)" ng-class='{ disabled: !nearby(object) }'
              ng-if='object.player.id !== player.id'>
-            Atakuoti trobą
+            Atakuoti
         </li>
         <li class="buy-estate text-center options" ng-click="invite(object)" ng-class='{ disabled: !nearby(object) }'
              ng-if='object.player.id !== player.id'>

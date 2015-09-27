@@ -51,6 +51,8 @@ angular.module('game')
               $scope.actions.fighting = false;
               $scope.actions.inviteSent = false;
               $scope.actions.challenged = false;
+
+              $timeout(function () { delete $scope.message }, 5000);
             }
           }
         });
@@ -142,6 +144,8 @@ angular.module('game')
             $scope.actions.fighting = false;
             $scope.actions.inviteSent = false;
             $scope.actions.challenged = false;
+            
+            $timeout(function () { delete $scope.message }, 5000);
           }
         };
 

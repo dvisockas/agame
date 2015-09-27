@@ -233,7 +233,7 @@ body {
 
     .third {
       width: 33.33%;
-      &:hover {
+      &:hover, &.active {
         background-color: #fdc905;
         color: #353e49;
       }

@@ -8,6 +8,12 @@ angular.module('game')
 
       templateUrl: 'app/components/map/map_navigation.html',
       link: function ($scope, $elem, attrs) {
+        $scope.actions = {
+          inviteSent: false,
+          challenged: false,
+          fighting: false,
+          declined: false
+        }
 
         $scope.attack = function(estate) {
           alert("O, koks mandras!");
@@ -20,60 +26,62 @@ angular.module('game')
 
         $scope.attackUser = function (user) {
           socket.emit('rps send invite', user);
-          $scope.inviteSent = true;
+          $scope.actions.inviteSent = true;
           $scope.challenger = user;
         };
 
         socket.on('rps get invite', function (data) {
-          console.log(data)
-          console.log($scope.player)
-          console.log($scope.challenger)
           if ($scope.player.id === data.user.id) {
-            $scope.challenged = true;
+            $scope.actions.challenged = true;
             $scope.challenger = data.attacker;
+            $scope.object = data.attacker;
           }
         });
 
         socket.on('rps responded invite', function (data) {
-          console.log(data)
-          if ($scope.challenger.id === data.user.id) {
+          if ($scope.player.id === data.user.id) {
             if (data.accepted) {
-              $scope.fighting = true;
+              $scope.actions.fighting = true;
             } else {
-              $scope.declined = true;
+              $scope.actions.declined = true;
             }
           }
         });
 
         $scope.fightBack = function (action) {
           $scope.userResponse = action;
-          socket.emit('rps action', {user: $scope.challenger, action: action});
+          socket.emit('rps action', {user: $scope.player, action: action});
 
+          console.log('I fight!')
+          console.log('my response: ' + $scope.userResponse)
+          console.log('opponent: ' + $scope.oppenentAction)
           if ($scope.opponentAction) {
             whoWon(action, $scope.opponentAction);
 
             delete $scope.userResponse;
             delete $scope.opponentAction;
             delete $scope.challenger;
-            $scope.fighting = false;
-            $scope.inviteSent = false;
-            $scope.challenged = false;
+            $scope.actions.fighting = false;
+            $scope.actions.inviteSent = false;
+            $scope.actions.challenged = false;
           }
         };
 
-        socket.on('rps responded action', function(data) {
-          if ($scope.player.id === data.user.id) {
+        socket.on('rps responded action', function (data) {
+          if ($scope.challenger.id === data.user.id) {
+            console.log('opponent responded')
+            console.log('my response: ' + $scope.userResponse)
+            console.log('opponent: ' + $scope.oppenentAction)
             if ($scope.userResponse) {
               whoWon($scope.userResponse, data.action);
 
               delete $scope.userResponse;
               delete $scope.opponentAction;
               delete $scope.challenger;
-              $scope.fighting = false;
-              $scope.inviteSent = false;
-              $scope.challenged = false;
-            }
-            else {
+              $scope.actions.fighting = false;
+              $scope.actions.inviteSent = false;
+              $scope.actions.challenged = false;
+            } else {
               $scope.opponentAction = data.action;
             }
           }
@@ -95,6 +103,11 @@ angular.module('game')
 
         $scope.respondToChallenge = function (accepted) {
           socket.emit('rps response invite', {user: $scope.challenger, accepted: accepted});
+          if (accepted) {
+            $scope.actions.fighting = true;
+          } else {
+            $scope.actions.declined = true;
+          }
         };
 
         $scope.nearby = function(obj) {

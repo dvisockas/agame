@@ -90,8 +90,19 @@ angular.module('game')
               var nodes = building.nodes.map(function(elem) {
                 return [elem.latitude, elem.longitude];
               });
-              L.polygon(nodes, {color: 'red', estate: building}).addTo(map).on('click', onClick);
-              // debugger;
+              if (building.player && building.player.name === $scope.player.name ) {
+                // Tavo
+                L.polygon(nodes, {color: 'green', estate: building}).addTo(map).on('click', onClick);
+              } else {
+                if (building.player) {
+                  L.polygon(nodes, {color: 'red', estate: building}).addTo(map).on('click', onClick);
+                  // Kito
+                } else {
+                  L.polygon(nodes, {color: 'grey', estate: building}).addTo(map).on('click', onClick);
+                  // Laisvas
+
+                }
+              }
 
               // buildingMarkers[building.id] = L.marker(coords, {icon: buildingIcon, estate: building}).addTo(map).on('click', onClick);
             });

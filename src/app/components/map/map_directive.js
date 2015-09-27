@@ -92,13 +92,13 @@ angular.module('game')
               });
               if (building.player && building.player.name === $scope.player.name ) {
                 // Tavo
-                L.polygon(nodes, {color: 'green', estate: building}).addTo(map).on('click', onClick);
+                L.polygon(nodes, {color: '#FDC905', estate: building}).addTo(map).on('click', onClick);
               } else {
                 if (building.player) {
                   L.polygon(nodes, {color: 'red', estate: building}).addTo(map).on('click', onClick);
                   // Kito
                 } else {
-                  L.polygon(nodes, {color: 'grey', estate: building}).addTo(map).on('click', onClick);
+                  L.polygon(nodes, {color: 'green', estate: building}).addTo(map).on('click', onClick);
                   // Laisvas
 
                 }

@@ -2,16 +2,16 @@ angular.module('game')
   .directive('mapNavigation', ['$window', '$swipe', 'Restangular', 'socket', function ($window, $swipe, Restangular, socket) {
     return {
       scope: {
-        player: '=',
-        buildings: '='
-      }, // {} = isolate, true = child, false/undefined = no change
-      restrict: 'E', // E = Element, A = Attribute, C = Class, M = Comment
+        player: '='
+      },
+      restrict: 'E',
+
       templateUrl: 'app/components/map/map_navigation.html',
       link: function ($scope, $elem, attrs) {
         $scope.attack = function(estate) {
           alert("O, koks mandras!");
         };
-        
+
         $scope.attackUser = function (user) {
           socket.emit('attack, bitch');
           $scope.fighting = true;

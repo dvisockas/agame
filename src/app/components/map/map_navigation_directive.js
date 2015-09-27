@@ -11,29 +11,6 @@ angular.module('game')
           alert("O, koks mandras!");
         };
 
-        var delta;
-        $swipe.bind($elem, {
-          start: function(coords) {
-            var startX = coords.x;
-            var pointX = coords.y;
-          },
-          'move': function(coords) {
-            delta = coords.x - pointX;
-            $elem.children()[0].style.transform = "translate3d(" + delta + "px, 0, 0);";
-          },
-          'end': function(coords) {
-            if (~~delta < 300) {
-              $elem.children()[0].style.transform = "";
-            } else {
-              $scope.options = [];
-              $scope.object = {};
-              $scope.$apply();
-            }
-          },
-          cancel: function(coords) {
-          }
-        });
-
         $scope.$on('clickedMarker', function(e, data) {
           delete $scope.estateTypes;
 

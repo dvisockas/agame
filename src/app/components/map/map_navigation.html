@@ -15,7 +15,7 @@
   <!-- Interacting with estate -->
   <div ng-if="object.route === 'estates'">
     <div class='menu' ng-if='!estateTypes'>
-      <div class="name"><span>{{ object.player.name }}'s {{ object.name }}</span></div>
+      <div class="name"><span>{{ object.player ? object.player.name + "'s'" : '' }} {{ object.name }}</span></div>
       <div class="user-meta">
         <div class="gold">Gold: 23</div>
         <div class="land">Land: {{ object.area }}U</div>

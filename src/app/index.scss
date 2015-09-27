@@ -168,7 +168,8 @@ body {
     color: white;
     font-family: 'Montserrat', sans-serif;
     font-size: 20px;
-
+    font-weight: 400;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
     max-height: 150px;
     overflow-y: scroll;
     &::-webkit-scrollbar {
@@ -193,6 +194,10 @@ body {
       float: left;
       width: 50%;
       cursor: pointer;
+    }
+
+    .full {
+      width: 100%;
     }
 
     .cost {
@@ -243,4 +248,41 @@ body {
 
 .leaflet-control-attribution.leaflet-control, .leaflet-control-zoom {
   display: none !important;
+}
+
+#cards {
+  padding: 0 5px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 55px;
+  overflow: hidden;
+
+
+  ul {
+    list-style: none;
+    position: absolute;
+    bottom: 0;
+    left: 5px;
+    right: 5px;
+    padding: 0;
+  }
+
+  li {
+    width: 100%;
+    margin-bottom: 5px;
+    background-color: #353e49;
+    border-radius: 5px;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 50px;
+    cursor: pointer;
+
+    &:last-child {
+      margin-bottom: 0px;
+    }
+  }
 }

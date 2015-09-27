@@ -36,6 +36,7 @@ angular.module('game')
           }
 
           if (($scope.players.length || $scope.estates.length) && obj.lat) {
+            console.log('clicked');
             var nearby = [];
             angular.forEach($scope.players, function(player) {
               if (distance(player.latitude, player.longitude, obj.lat, obj.lng) < 0.01) {
@@ -47,6 +48,9 @@ angular.module('game')
                 nearby.push(estate);
               }
             });
+            if (distance($scope.player.latitude, $scope.player.longitude, obj.lat, obj.lng) < 0.01) {
+              nearby.push($scope.player);
+            }
             if (nearby.length > 1) {
               $rootScope.$broadcast('clickedMarker', nearby);
             } else {
@@ -150,7 +154,7 @@ angular.module('game')
               icon: playerIcon,
               zIndexOffset: 1000,
               player: $scope.player
-            }).addTo(map);
+            }).addTo(map).on('click', onClick);
 
             map.setView(coords, 18, {
               animate: true

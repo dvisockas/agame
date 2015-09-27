@@ -21,8 +21,13 @@
     </div>
     <!-- Priešininkas -->
     <div ng-if="object.route === 'players'">
-      <img src="../assets/images/swords.svg" id="swords" />
-      {{ object.name }}
+      <div ng-if="object.id != player.id">
+        <img src="../assets/images/swords.svg" id="swords" />
+        {{ object.name }}
+      </div>
+      <div ng-if="object.id === player.id">
+        You
+      </div>
     </div>
   </div>
 </div>
@@ -46,8 +51,8 @@
     <div class="user-meta" ng-if='!actions.inviteSent && !actions.challenged'>
       <div class="gold">Gold: {{ object.gold }}</div>
       <div class="land">Land: 43km</div>
-      <div class="attack text-center text-danger" ng-click="attackUser(object)">Pizdelint</div>
-      <div class="invite" ng-click="invite(object)">Pakviesti į gaują</div>
+      <div class="attack text-center text-danger" ng-click="attackUser(object)" ng-if="object.id != player.id">Kariauti</div>
+      <div class="invite" ng-click="invite(object)" ng-if="object.id != player.id">Pakviesti į gaują</div>
     </div>
     <div ng-if='actions.inviteSent && !actions.fighting' class='user-meta text-center'>
       <div class='land full'>Waiting for response...</div>
@@ -74,9 +79,16 @@
       </div>
       <div class="cards" ng-if="object.player && object.player.id != player.id">
         <ul>
-          <li class="attack text-center text-danger options" ng-click="attack(object)" ng-class='{ disabled: !nearby(object) }'
+          <li class="attack text-center text-red options" ng-click="attack(object)" ng-class='{ disabled: !nearby(object) }'
                ng-if='object.player.id !== player.id'>
               Atakuoti trobą
+          </li>
+        </ul>
+      </div>
+      <div class="cards" ng-if="object.player && object.player.id == player.id">
+        <ul>
+          <li class="attack text-center options" ng-click="cancel()" ng-class='{ disabled: !nearby(object) }'>
+              Upgrade trobą
           </li>
         </ul>
       </div>
@@ -88,6 +100,7 @@
           </li>
         </ul>
       </div>
+
       <div class="user-meta" ng-if='object.player_id !== player.id'>
 
         <!-- <div class="build text-center" ng-click='getEstateTypes(object)' ng-if='!object.player'
@@ -101,7 +114,7 @@
     </div>
     <div class='user-meta clickable' ng-class='{ disabled: !canAfford(type) }' ng-repeat='type in estateTypes'
          ng-click='buyEstate(type, object)'>
-      {{ type.name }} (Cost: {{ type.cost }})
+      {{ type.name }} <span class="text-yellow">{{ type.cost }} Coins</span>
       <!-- build_time: 0 -->
       <!-- cost: 31
       health: 31

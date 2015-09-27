@@ -256,6 +256,17 @@ body {
   }
 }
 
+.text-yellow {
+  color: #fdc905;
+}
+
+.text-red {
+  color: #E74C3C !important;
+  &:hover {
+    color: #fff !important;
+  }
+}
+
 .leaflet-control-attribution.leaflet-control, .leaflet-control-zoom {
   display: none !important;
 }

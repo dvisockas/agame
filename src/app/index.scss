@@ -160,10 +160,15 @@ body {
       color: #E74C3C;
     }
 
+    .invite {
+      color: green;
+    }
+
     .third {
       width: 33.33%;
       &:hover {
-        background-color: darkmagenta;
+        background-color: #fdc905;
+        color: #353e49;
       }
     }
   }
@@ -178,7 +183,8 @@ body {
   .user-meta.clickable {
     cursor: pointer;
     &:hover {
-      background-color: darkmagenta;
+      color: #353e49;
+      background-color: #fdc905;
     }
   }
 }

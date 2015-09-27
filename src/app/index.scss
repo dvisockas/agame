@@ -106,6 +106,13 @@ body {
   margin-top: -3px;
 }
 
+.header-image {
+  @extend #swords;
+  img {
+    margin-top: -2px;
+  }
+}
+
 .cool-text {
   color: #fff;
   font-family: 'Montserrat', sans-serif;
@@ -194,8 +201,9 @@ body {
 
     > div {
       float: left;
-      width: 50%;
+      width: 100%;
       cursor: pointer;
+      line-height: 47px;
     }
 
     .full {
@@ -252,14 +260,16 @@ body {
   display: none !important;
 }
 
-#cards {
+.cards {
   padding: 0 5px;
   position: absolute;
-  bottom: 0;
+  bottom: 44px;
   left: 0;
   right: 0;
-  top: 55px;
-  overflow: hidden;
+  // top: 55px;
+  min-height: 100px;
+  width: 100%;
+  // overflow: hidden;
 
 
   ul {

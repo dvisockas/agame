@@ -3,7 +3,6 @@ angular.module('game')
     return {
       scope: {
         player: '=',
-        buildings: '='
       }, // {} = isolate, true = child, false/undefined = no change
       restrict: 'E', // E = Element, A = Attribute, C = Class, M = Comment
       templateUrl: 'app/components/map/map_navigation.html',
@@ -15,8 +14,8 @@ angular.module('game')
         var delta;
         $swipe.bind($elem, {
           start: function(coords) {
-            startX = coords.x;
-            pointX = coords.y;
+            var startX = coords.x;
+            var pointX = coords.y;
           },
           'move': function(coords) {
             delta = coords.x - pointX;
@@ -36,6 +35,8 @@ angular.module('game')
         });
 
         $scope.$on('clickedMarker', function(e, data) {
+          delete $scope.estateTypes;
+
           $scope.options = [];
           $scope.object = {};
 
@@ -66,10 +67,15 @@ angular.module('game')
               player_id: $scope.player.id
             }
           }).then(function (boughtEstate) {
-            var buildings = $scope.buildings;
+            console.log(Restangular.stripRestangular(boughtEstate))
+            angular.forEach(Restangular.stripRestangular(boughtEstate), function (val, prop) {
+              estate[prop] = val;
+            });
+            console.log(estate)
 
-            buildings[buildings.indexOf(estate)] = boughtEstate;
-            $scope.estateTypes = [];
+            $scope.player.gold -= estateType.cost;
+
+            delete $scope.estateTypes;
           });
         };
 

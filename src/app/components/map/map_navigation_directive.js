@@ -68,7 +68,7 @@ angular.module('game')
         };
 
         socket.on('rps responded action', function (data) {
-          if ($scope.player.id === data.user.id) {
+          if ($scope.challenger.id === data.user.id) {
             console.log('opponent responded')
             console.log('my response: ' + $scope.userResponse)
             console.log('opponent: ' + $scope.oppenentAction)

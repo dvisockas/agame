@@ -62,6 +62,13 @@
       <div class="third" ng-click='fightBack(2)' ng-class='{ active: $scoper.userResponse === 2 }'>Paper</div>
       <div class="third" ng-click='fightBack(3)' ng-class='{ active: $scoper.userResponse === 3 }'>Scissors</div>
     </div>
+    <div class='cards' ng-if='message'>
+      <ul>
+        <li>
+          {{ message }}
+        </li>
+      </ul>
+    </div>
   </div>
   <!-- Interacting with estate -->
   <div ng-if="object.route === 'estates'">

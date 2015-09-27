@@ -1,5 +1,5 @@
 angular.module('game')
-  .directive('mapNavigation', ['$window', '$swipe', 'Restangular', 'socket', function ($window, $swipe, Restangular, socket) {
+  .directive('mapNavigation', ['$window', '$swipe', 'Restangular', 'socket', '$timeout', function ($window, $swipe, Restangular, socket, $timeout) {
     return {
       scope: {
         player: '='
@@ -88,31 +88,37 @@ angular.module('game')
         });
 
         var whoWon = function(action1, action2) {
-            if (action1 == action2)
-              console.log("Tie");
-            else if (
+            if (action1 == action2) {
+              $scope.message = "It's a fucking tie";
+            } else if (
               action1 == 1 && action2 == 3 ||
               action1 == 3 && action2 == 2 ||
               action1 == 2 && action2 == 1
             ) {
-              Restangular.all('players').customOperation('patch', 'attack', { 
-                attack: { 
-                  winner_id: $scope.player.id,
-                  loser_id: $scope.challenger.id
-                }
-              }).then(function (data) {
-                console.log(data)
-              })
+              $scope.message = 'You won!';
+              // Restangular.all('players').customOperation('patch', 'attack', { 
+              //   attack: { 
+              //     winner_id: $scope.player.id,
+              //     loser_id: $scope.challenger.id
+              //   }
+              // }).then(function (data) {
+              //   console.log(data)
+              // })
             } else {
-              Restangular.all('players').customOperation('patch', 'attack', { 
-                attack: { 
-                  loser_id: $scope.player.id,
-                  winner_id: $scope.challenger.id
-                }
-              }).then(function (data) {
-                console.log(data)
-              })
+              $scope.message = 'You lost..';
+              // Restangular.all('players').customOperation('patch', 'attack', { 
+              //   attack: { 
+              //     loser_id: $scope.player.id,
+              //     winner_id: $scope.challenger.id
+              //   }
+              // }).then(function (data) {
+              //   console.log(data)
+              // })
             }
+
+            $timeout(function () {
+              delete $scope.message;
+            }, 5000)
         }
 
         $scope.respondToChallenge = function (accepted) {

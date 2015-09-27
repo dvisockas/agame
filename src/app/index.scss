@@ -100,6 +100,27 @@ body {
   }
 }
 
+#top-info {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #353e49;
+  min-height: 50px;
+  color: #fff;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 20px;
+  width: 100%;
+  padding: 10px 0;
+
+  #close  {
+    height: 20px;
+    width: 20px;
+    position: absolute;
+    right: 5px;
+
+  }
+}
+
 #menu-navigation {
   position: absolute;
   bottom: 0;
@@ -117,6 +138,7 @@ body {
     font-family: 'Montserrat', sans-serif;
     font-size: 20px;
     font-weight: 400;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
     max-height: 150px;
     overflow-y: scroll;
     &::-webkit-scrollbar {

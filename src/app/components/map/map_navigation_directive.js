@@ -2,9 +2,10 @@ angular.module('game')
   .directive('mapNavigation', ['$window', '$swipe', 'Restangular', 'socket', function ($window, $swipe, Restangular, socket) {
     return {
       scope: {
-        player: '=',
-      }, // {} = isolate, true = child, false/undefined = no change
-      restrict: 'E', // E = Element, A = Attribute, C = Class, M = Comment
+        player: '='
+      },
+      restrict: 'E',
+
       templateUrl: 'app/components/map/map_navigation.html',
       link: function ($scope, $elem, attrs) {
         $scope.attack = function(estate) {
@@ -122,13 +123,10 @@ angular.module('game')
               player_id: $scope.player.id
             }
           }).then(function (boughtEstate) {
-            angular.forEach(Restangular.stripRestangular(boughtEstate), function (val, prop) {
-              estate[prop] = val;
-            });
+            var buildings = $scope.buildings;
 
-            $scope.player.gold -= estateType.cost;
-
-            delete $scope.estateTypes;
+            buildings[buildings.indexOf(estate)] = boughtEstate;
+            $scope.estateTypes = [];
           });
         };
 

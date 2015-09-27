@@ -159,6 +159,13 @@ body {
     .attack {
       color: #E74C3C;
     }
+
+    .third {
+      width: 33.33%;
+      &:hover {
+        background-color: darkmagenta;
+      }
+    }
   }
 
   .disabled {

@@ -258,13 +258,13 @@ body {
 
 .text-yellow {
   color: #fdc905;
+  &:hover {
+    color: #fff !important;
+  }
 }
 
 .text-red {
   color: #E74C3C !important;
-  &:hover {
-    color: #fff !important;
-  }
 }
 
 .leaflet-control-attribution.leaflet-control, .leaflet-control-zoom {
@@ -281,7 +281,6 @@ body {
   min-height: 100px;
   width: 100%;
   // overflow: hidden;
-
 
   ul {
     list-style: none;
@@ -308,4 +307,13 @@ body {
       margin-bottom: 0px;
     }
   }
+}
+
+.buy-estate {
+  background-color: #2ECC71 !important;
+}
+
+.attack-estate {
+  background-color: #E74C3C !important;
+  color: #fff;
 }

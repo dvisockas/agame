@@ -117,7 +117,7 @@ angular.module('game')
         $scope.$on('user-left', leaveHandler);
 
         var playerIcon = L.icon({
-          iconUrl: 'assets/images/angular.png',
+          iconUrl: 'assets/images/current-user.png',
           iconSize:     [75, 75], // size of the icon
           iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
           shadowAnchor: [4, 62],  // the same for the shadow
@@ -125,7 +125,7 @@ angular.module('game')
         });
 
         var peasantIcon = L.icon({
-          iconUrl: 'assets/images/yeoman.png',
+          iconUrl: 'assets/images/other-user.png',
           iconSize:     [40, 40],
           iconAnchor:   [22, 94],
           shadowAnchor: [4, 62],

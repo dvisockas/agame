@@ -162,6 +162,8 @@ body {
   transition: .5s all linear;
   max-height: 500px;
   @extend .cool-text;
+  border-top-left-radius: .4em;
+  border-top-right-radius: .4em;
   .name {
     width: 100%;
     line-height: 50px;
@@ -169,7 +171,7 @@ body {
     font-family: 'Montserrat', sans-serif;
     font-size: 20px;
     font-weight: 400;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    // box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
     max-height: 150px;
     overflow-y: scroll;
     &::-webkit-scrollbar {

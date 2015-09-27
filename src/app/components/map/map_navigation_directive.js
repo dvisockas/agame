@@ -12,7 +12,6 @@ angular.module('game')
         };
 
         $scope.nearby = function(obj) {
-          console.log(distance(obj.latitude, obj.longitude, $scope.player.latitude, $scope.player.longitude));
           return distance(obj.latitude, obj.longitude, $scope.player.latitude, $scope.player.longitude) < 0.12;
         };
 

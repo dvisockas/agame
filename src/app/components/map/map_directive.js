@@ -32,7 +32,7 @@ angular.module('game')
             obj = {};
           }
 
-          if (($scope.players.length || $scope.buildings.length) && obj.lat) {
+          if (($scope.players.length || $scope.estates.length) && obj.lat) {
             var nearby = [];
             angular.forEach($scope.players, function(player) {
               if (distance(player.latitude, player.longitude, obj.lat, obj.lng) < 0.01) {
@@ -127,11 +127,11 @@ angular.module('game')
           if (playerMarker) {
             playerMarker.setLatLng(coords);
           } else {
-            playerMarker = L.marker(coords, {
-              icon: playerIcon,
-              zIndexOffset: 1000,
-              player: $scope.player
-            }).addTo(map);
+            // playerMarker = L.marker(coords, {
+            //   icon: playerIcon,
+            //   zIndexOffset: 1000,
+            //   player: $scope.player
+            // }).addTo(map);
 
             map.setView(coords, 18, {
               animate: true
@@ -168,8 +168,8 @@ angular.module('game')
 
         function getMaxBounds () {
           var player = $scope.player,
-              lat = 0.6 * (1 / 110.574),
-              lon = 0.6 * (1 / (111.32 * Math.cos(player.latitude)));
+              lat = 0.5 * (1 / 110.574),
+              lon = 0.5 * (1 / (111.32 * Math.cos(player.latitude)));
 
           if (player) {
             return [

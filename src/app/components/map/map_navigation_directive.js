@@ -3,8 +3,8 @@ angular.module('game')
     return {
       scope: {
         player: '=',
-      }, // {} = isolate, true = child, false/undefined = no change
-      restrict: 'E', // E = Element, A = Attribute, C = Class, M = Comment
+      },
+      restrict: 'E',
       templateUrl: 'app/components/map/map_navigation.html',
       link: function ($scope, $elem, attrs) {
         $scope.attack = function(estate) {

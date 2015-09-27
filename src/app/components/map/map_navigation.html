@@ -7,12 +7,12 @@
     <!--<div class="col-xs-4">Susidraugauti</div>-->
     <!--<div class="col-xs-4">Pakviesti alaus</div>-->
 
-    <div class="user-meta">
+    <div class="user-meta" ng-if='!fighting'>
       <div class="gold">Gold: {{ object.gold }}</div>
       <div class="land">Land: 43km</div>
       <div class="attack text-center text-danger" ng-click="attackUser(object)">Pizdelint</div>
     </div>
-    <div ng-if='true' class='user-meta'>
+    <div ng-if='fighting' class='user-meta'>
       <div class="third">Rock</div>
       <div class="third">Paper</div>
       <div class="third" ng-click="attackUser(object)">Scissors</div>

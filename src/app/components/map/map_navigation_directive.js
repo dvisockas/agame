@@ -8,7 +8,7 @@ angular.module('game')
 
       templateUrl: 'app/components/map/map_navigation.html',
       link: function ($scope, $elem, attrs) {
-        
+
         $scope.attack = function(estate) {
           alert("O, koks mandras!");
         };
@@ -45,7 +45,7 @@ angular.module('game')
         $scope.fightBack = function (action) {
           $scope.userResponse = action;
           socket.emit('rps action', {user: $scope.challenger, action: action});
-          
+
           if ($scope.opponentAction) {
             whoWon(action, $scope.opponentAction);
 

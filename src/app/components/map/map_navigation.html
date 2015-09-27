@@ -15,13 +15,10 @@
   <!-- Interacting with estate -->
   <div ng-if="object.route === 'estates'">
     <div class='menu' ng-if='!estateTypes'>
-      <div class="name"><span>Estate: {{ object.name }}</span></div>
-      <!--<div class="col-xs-4">Ieškoti pinigų</div>-->
-      <!--<div class="col-xs-4">Apvogti</div>-->
-      <!--<div class="col-xs-4">Statyti trobą</div>-->
+      <div class="name"><span>{{ object.player.name }}'s {{ object.name }}</span></div>
       <div class="user-meta">
         <div class="gold">Gold: 23</div>
-        <div class="land">Land: 43km</div>
+        <div class="land">Land: {{ object.area }}U</div>
       </div>
       <div class="user-meta" ng-if='object.player_id !== player.id'>
         <div class="build text-center" ng-click='getEstateTypes(object)'>

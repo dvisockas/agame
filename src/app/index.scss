@@ -160,19 +160,32 @@ body {
     .attack {
       color: #E74C3C;
     }
+
+    .invite {
+      color: green;
+    }
+
+    .third {
+      width: 33.33%;
+      &:hover {
+        background-color: #fdc905;
+        color: #353e49;
+      }
+    }
   }
 
+  .disabled {
+    pointer-events: none;
+    color: grey;
+    &:hover {
+      background-color: #353e49;
+    }
+  }
   .user-meta.clickable {
     cursor: pointer;
     &:hover {
-      background-color: darkmagenta;
-    }
-    &.disabled {
-      pointer-events: none;
-      color: grey;
-      &:hover {
-        background-color: #353e49;
-      }
+      color: #353e49;
+      background-color: #fdc905;
     }
   }
 }

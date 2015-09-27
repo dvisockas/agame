@@ -39,7 +39,7 @@
     }
 
     function onError () {
-      $window.alert('No game for you');
+      $window.alert('No game for you. Maybe reload?');
     }
   }
 })();

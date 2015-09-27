@@ -9,7 +9,7 @@ angular.module('game')
       restrict: 'A', // E = Element, A = Attribute, C = Class, M = Comment
       link: function ($scope, $elem, attrs) {
 
-        function distance(lat1, lon1, lat2, lon2, unit) {
+        function distance(lat1, lon1, lat2, lon2) {
         	var radlat1 = Math.PI * lat1/180
         	var radlat2 = Math.PI * lat2/180
         	var radlon1 = Math.PI * lon1/180
@@ -90,8 +90,19 @@ angular.module('game')
               var nodes = building.nodes.map(function(elem) {
                 return [elem.latitude, elem.longitude];
               });
-              L.polygon(nodes, {color: 'red', estate: building}).addTo(map).on('click', onClick);
-              // debugger;
+              if (building.player && building.player.name === $scope.player.name ) {
+                // Tavo
+                L.polygon(nodes, {color: 'green', estate: building}).addTo(map).on('click', onClick);
+              } else {
+                if (building.player) {
+                  L.polygon(nodes, {color: 'red', estate: building}).addTo(map).on('click', onClick);
+                  // Kito
+                } else {
+                  L.polygon(nodes, {color: 'grey', estate: building}).addTo(map).on('click', onClick);
+                  // Laisvas
+
+                }
+              }
 
               // buildingMarkers[building.id] = L.marker(coords, {icon: buildingIcon, estate: building}).addTo(map).on('click', onClick);
             });
@@ -169,7 +180,7 @@ angular.module('game')
               marker = playerMarkers[user.id];
 
           $scope.players.splice($scope.players.indexOf(user), 1);
-          map.removeLayer(marker);
+          if (marker) map.removeLayer(marker);
           delete playerMarkers[user.id];
         }
 

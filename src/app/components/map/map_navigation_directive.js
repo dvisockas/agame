@@ -67,11 +67,9 @@ angular.module('game')
               player_id: $scope.player.id
             }
           }).then(function (boughtEstate) {
-            console.log(Restangular.stripRestangular(boughtEstate))
             angular.forEach(Restangular.stripRestangular(boughtEstate), function (val, prop) {
               estate[prop] = val;
             });
-            console.log(estate)
 
             $scope.player.gold -= estateType.cost;
 

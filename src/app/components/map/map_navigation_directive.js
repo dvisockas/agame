@@ -95,21 +95,21 @@ angular.module('game')
               action1 == 3 && action2 == 2 ||
               action1 == 2 && action2 == 1
             ) {
-              Restangular.all('players').customOperation('patch', { 
+              Restangular.all('players').customOperation('patch', 'attack', { 
                 attack: { 
                   winner_id: $scope.player.id,
                   loser_id: $scope.challenger.id
                 }
-              }, 'attack').then(function (data) {
+              }).then(function (data) {
                 console.log(data)
               })
             } else {
-              Restangular.all('players').customOperation('patch', { 
+              Restangular.all('players').customOperation('patch', 'attack', { 
                 attack: { 
                   loser_id: $scope.player.id,
                   winner_id: $scope.challenger.id
                 }
-              }, 'attack').then(function (data) {
+              }).then(function (data) {
                 console.log(data)
               })
             }

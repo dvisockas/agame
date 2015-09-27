@@ -108,6 +108,7 @@ body {
   background-color: #353e49;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
   transition: .5s all linear;
+  max-height: 500px;
 
   .name {
     width: 100%;
@@ -124,11 +125,12 @@ body {
     }
   }
 
-  .user-meta {
+  .user-meta, .acions, .options {
     font-family: 'Montserrat', sans-serif;
     font-size: 20px;
     font-weight: 400;
     line-height: 60px;
+    color: #fff;
 
     &::after {
       content: '';
@@ -139,14 +141,38 @@ body {
     > div {
       float: left;
       width: 50%;
+      cursor: pointer;
+    }
+
+    .cost {
+      font-size: 15px;
     }
 
     .gold {
       color: #fdc905;
     }
 
-    .land {
-      color: #fff;
+    .build {
+      line-height: 18px;
+      padding-top: 15px;
+    }
+
+    .attack {
+      color: #E74C3C;
+    }
+  }
+
+  .user-meta.clickable {
+    cursor: pointer;
+    &:hover {
+      background-color: darkmagenta;
+    }
+    &.disabled {
+      pointer-events: none;
+      color: grey;
+      &:hover {
+        background-color: #353e49;
+      }
     }
   }
 }

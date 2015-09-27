@@ -26,6 +26,9 @@ angular.module('game')
 
         function onClick(e) {
           var obj;
+          // this.originalIconSrc = this._icon.src;
+          //
+          // this._icon.src = 'https://scontent-frt3-1.xx.fbcdn.net/hprofile-xtp1/v/t1.0-1/c0.0.40.40/p40x40/1979708_10201712618802816_1524137007_n.jpg?oh=e7ef9cc3dca96f21be3c5b02e28b531f&oe=568E37A3';
           if (this.getLatLng) {
             obj = this.getLatLng();
           } else {
@@ -71,7 +74,7 @@ angular.module('game')
         var playerWatcher = $scope.$watch('players', function (playas) {
           if (playas) {
             angular.forEach(playas, function (playa) {
-              var coords = [playa.latitude, playa.longitude]
+              var coords = [playa.latitude, playa.longitude];
 
               playerMarkers[playa.id] = L.marker(coords, {icon: peasantIcon, player: playa}).addTo(map).on('click', onClick);
             });
@@ -84,8 +87,13 @@ angular.module('game')
           if (buildings) {
             angular.forEach(buildings, function (building) {
               var coords = [building.latitude, building.longitude];
+              var nodes = building.nodes.map(function(elem) {
+                return [elem.latitude, elem.longitude];
+              });
+              L.polygon(nodes, {color: 'red', estate: building}).addTo(map).on('click', onClick);
+              // debugger;
 
-              buildingMarkers[building.id] = L.marker(coords, {icon: buildingIcon, estate: building}).addTo(map).on('click', onClick);
+              // buildingMarkers[building.id] = L.marker(coords, {icon: buildingIcon, estate: building}).addTo(map).on('click', onClick);
             });
 
             buildingsWatcher();

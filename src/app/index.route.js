@@ -27,12 +27,10 @@
 
   ensurePlayer.$inject = ['Restangular', 'localStorageService', '$q'];
   function ensurePlayer (Restangular, localStorageService, $q) {
-    var name = localStorageService.get('player-name');
+    var id = localStorageService.get('player-id');
 
-    if (name) {
-      var parts = name.split('-');
-
-      return Restangular.one('players', parts[parts.length - 1]).get();
+    if (id) {
+      return Restangular.one('players', id).get();
     } else {
       return $q.reject(name);
     }

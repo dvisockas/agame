@@ -2,6 +2,8 @@ angular.module('game')
   .directive('mapNavigation', ['$window', '$swipe', 'Restangular', function ($window, $swipe, Restangular) {
     return {
       scope: {
+        player: '=',
+        buildings: '='
       }, // {} = isolate, true = child, false/undefined = no change
       restrict: 'E', // E = Element, A = Attribute, C = Class, M = Comment
       templateUrl: 'app/components/map/map_navigation.html',
@@ -67,7 +69,12 @@ angular.module('game')
             var buildings = $scope.buildings;
 
             buildings[buildings.indexOf(estate)] = boughtEstate;
+            $scope.estateTypes = [];
           });
+        };
+
+        $scope.canAfford = function (estate) {
+          return $scope.player.gold >= estate.cost;
         };
       }
     }

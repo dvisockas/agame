@@ -180,7 +180,7 @@ angular.module('game')
               marker = playerMarkers[user.id];
 
           $scope.players.splice($scope.players.indexOf(user), 1);
-          map.removeLayer(marker);
+          if (marker) map.removeLayer(marker);
           delete playerMarkers[user.id];
         }
 

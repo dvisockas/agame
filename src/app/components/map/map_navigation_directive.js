@@ -12,8 +12,77 @@ angular.module('game')
         };
 
         $scope.attackUser = function (user) {
-          socket.emit('attack, bitch');
-          $scope.fighting = true;
+          socket.emit('rps send invite', user);
+          $scope.inviteSent = true;
+          $scope.challenger = user;
+        };
+
+        socket.on('rps get invite', function (user) {
+          if ($scope.challenger.id === user.id) {
+            $scope.challenged = true;
+          }
+        });
+
+        socket.on('rps responded invite', function (data) {
+          if ($scope.challenger.id === data.user.id) {
+            if (data.accepted) {
+              $scope.fighting = true;
+            } else {
+              $scope.declined = true;
+            }
+          }
+        });
+
+        $scope.fightBack = function (action) {
+          $scope.userResponse = action;
+          socket.emit('rps action', {user: $scope.challenger, action: action});
+          
+          if ($scope.opponentAction) {
+            whoWon(action, $scope.opponentAction);
+
+            delete $scope.userResponse;
+            delete $scope.opponentAction;
+            delete $scope.challenger;
+            $scope.fighting = false;
+            $scope.inviteSent = false;
+            $scope.challenged = false;
+          }
+        };
+
+        socket.on('rps responded action', function(data) {
+          if ($scope.player.id === data.user.id) {
+            if ($scope.userResponse) {
+              whoWon($scope.userResponse, data.action);
+
+              delete $scope.userResponse;
+              delete $scope.opponentAction;
+              delete $scope.challenger;
+              $scope.fighting = false;
+              $scope.inviteSent = false;
+              $scope.challenged = false;
+            }
+            else {
+              $scope.opponentAction = data.action;
+            }
+          }
+        });
+
+        var whoWon = function(action1, action2) {
+            if (action1 == action2)
+                console.log("Tie");
+            else if (
+                    action1 == 1 && action2 == 3 ||
+                    action1 == 3 && action2 == 2 ||
+                    action1 == 2 && action2 == 1
+            ) {
+                console.log("You won");
+            }
+            else
+                console.log("You lost");
+        }
+
+        $scope.respondChallenge = function (accepted) {
+          socket.emit('rps response invite', {user: $scope.challenger, accepted: accepted});
         };
 
         $scope.nearby = function(obj) {

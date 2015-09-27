@@ -7,16 +7,19 @@
     <!--<div class="col-xs-4">Susidraugauti</div>-->
     <!--<div class="col-xs-4">Pakviesti alaus</div>-->
 
-    <div class="user-meta" ng-if='!fighting'>
+    <div class="user-meta" ng-if='!inviteSent'>
       <div class="gold">Gold: {{ object.gold }}</div>
       <div class="land">Land: 43km</div>
       <div class="attack text-center text-danger" ng-click="attackUser(object)">Pizdelint</div>
       <div class="invite" ng-click="invite(object)">Pakviesti į gaują</div>
     </div>
+    <div ng-if='inviteSent' class='user-meta text-center'>
+      <div class='land'>Waiting for response...</div>
+    </div>
     <div ng-if='fighting' class='user-meta'>
-      <div class="third">Rock</div>
-      <div class="third">Paper</div>
-      <div class="third" ng-click="attackUser(object)">Scissors</div>
+      <div class="third" ng-click='fightBack(1)'>Rock</div>
+      <div class="third" ng-click='fightBack(2)'>Paper</div>
+      <div class="third" ng-click='fightBack(3)'>Scissors</div>
     </div>
   </div>
   <!-- Interacting with estate -->
@@ -24,7 +27,7 @@
     <div class='menu' ng-if='!estateTypes'>
       <div class="name"><span>{{ object.player ? object.player.name + "'s" : '' }} {{ object.name }}</span></div>
       <div class="user-meta">
-        <div class="gold">Gold: 23</div>
+        <div class="gold">Gold: 420</div>
         <div class="land">Land: {{ object.area }}U</div>
       </div>
       <div class="user-meta" ng-if='object.player_id !== player.id'>

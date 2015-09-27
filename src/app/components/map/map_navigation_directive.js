@@ -131,10 +131,11 @@ angular.module('game')
               player_id: $scope.player.id
             }
           }).then(function (boughtEstate) {
-            var buildings = $scope.buildings;
+            angular.forEach(boughtEstate, function (val, prop) {
+              estate[prop] = val;
+            });
 
-            buildings[buildings.indexOf(estate)] = boughtEstate;
-            $scope.estateTypes = [];
+            delete $scope.estateTypes;
           });
         };
 

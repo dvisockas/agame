@@ -26,6 +26,8 @@ angular.module('game')
 
         socket.on('rps get invite', function (data) {
           console.log(data)
+          console.log($scope.player)
+          console.log($scope.challenger)
           if ($scope.player.id === data.user.id) {
             $scope.challenged = true;
             $scope.challenger = data.attacker;
@@ -33,6 +35,7 @@ angular.module('game')
         });
 
         socket.on('rps responded invite', function (data) {
+          console.log(data)
           if ($scope.challenger.id === data.user.id) {
             if (data.accepted) {
               $scope.fighting = true;

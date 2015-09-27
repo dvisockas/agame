@@ -43,7 +43,14 @@ angular.module('game')
             if (data.accepted) {
               $scope.actions.fighting = true;
             } else {
-              $scope.actions.declined = true;
+              $scope.message = 'your opponent is a pussy';
+
+              delete $scope.userResponse;
+              delete $scope.opponentAction;
+              delete $scope.challenger;
+              $scope.actions.fighting = false;
+              $scope.actions.inviteSent = false;
+              $scope.actions.challenged = false;
             }
           }
         });

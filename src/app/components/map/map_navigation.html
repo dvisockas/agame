@@ -17,7 +17,12 @@
       <div class="invite" ng-click="invite(object)">Pakviesti į gaują</div>
     </div>
     <div ng-if='inviteSent' class='user-meta text-center'>
-      <div class='land'>Waiting for response...</div>
+      <div class='land full'>Waiting for response...</div>
+    </div>
+    <div ng-if='challenged' class='user-meta text-center'>
+      <div class='land full'>You have been challenged by {{ challenger.name }}!</div>
+      <div class='land' ng-click='respondToChallenge(true)'>Accept</div>
+      <div class='land' ng-click='respondToChallenge(false)'>Decline</div>
     </div>
     <div ng-if='fighting' class='user-meta'>
       <div class="third" ng-click='fightBack(1)'>Rock</div>

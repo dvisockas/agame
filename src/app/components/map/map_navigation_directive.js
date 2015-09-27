@@ -18,9 +18,10 @@ angular.module('game')
           $scope.challenger = user;
         };
 
-        socket.on('rps get invite', function (user) {
-          if ($scope.challenger.id === user.id) {
+        socket.on('rps get invite', function (data) {
+          if ($scope.player.id === data.user.id) {
             $scope.challenged = true;
+            $scope.challenger = data.attacker;
           }
         });
 
@@ -82,7 +83,7 @@ angular.module('game')
                 console.log("You lost");
         }
 
-        $scope.respondChallenge = function (accepted) {
+        $scope.respondToChallenge = function (accepted) {
           socket.emit('rps response invite', {user: $scope.challenger, accepted: accepted});
         };
 

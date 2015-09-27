@@ -1,5 +1,36 @@
-<div id="top-info">
-  <img src="../assets/images/cancel.svg" id="close"/>
+<div id="top-info" ng-show="object.id && options.length < 1">
+  <img src="../assets/images/cancel.svg" id="close" ng-click="cancel()" />
+
+  <div class="message">
+    <!-- Tavo hata -->
+    <div ng-if="object.route === 'estates' && object.player && object.player.id == player.id">
+      Your place
+      <!-- {{ object.name }} -->
+    </div>
+    <!-- Netavo hata -->
+    <div ng-if="object.route === 'estates' && object.player && object.player.id != player.id">
+      Not your place
+      <!-- Ne: {{ object.name }} -->
+    </div>
+    <!-- Laisva hata -->
+    <div ng-if="object.route === 'estates' && !object.player">
+      Open place
+      <!-- Laisva: {{ object.name }} -->
+    </div>
+    <!-- Priešininkas -->
+    <div ng-if="object.route === 'players'">
+      <img src="../assets/images/swords.svg" id="swords" />
+      {{ object.name }}
+    </div>
+  </div>
+</div>
+<div id="sub-info" ng-show="object.route === 'estates'">
+  <div ng-show="object.route === 'estates'">
+    {{ object.name }}
+  </div>
+  <div ng-show="object.route === 'players'">
+    User: {{ object.name }}
+  </div>
 </div>
 <div id="menu-navigation" class="text-center" ng-show="object.id || options.length">
 
@@ -44,7 +75,6 @@
 
         <div class="build text-center" ng-click='getEstateTypes(object)' ng-if='!object.player'
              ng-class='{ disabled: !nearby(object) }'>
-
           Statyti trobą
         </div>
         <div class="attack text-center text-danger" ng-click="attack(object)" ng-class='{ disabled: !nearby(object) }'

@@ -100,25 +100,56 @@ body {
   }
 }
 
+#swords {
+  height: 20px;
+  width: 20px;
+  margin-top: -3px;
+}
+
+.cool-text {
+  color: #fff;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 20px;
+  font-weight: 400;
+}
+
 #top-info {
+  @extend .cool-text;
   position: absolute;
   top: 0;
   left: 0;
+  z-index: 2;
   background-color: #353e49;
   min-height: 50px;
-  color: #fff;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 20px;
   width: 100%;
   padding: 10px 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.23);
+  .message {
+    font-size: 20px;
+    text-align: center;
+  }
 
   #close  {
     height: 20px;
     width: 20px;
     position: absolute;
-    right: 5px;
-
+    top: 14px;
+    right: 10px;
   }
+}
+
+#sub-info {
+  @extend .cool-text;
+  position: absolute;
+  top: 50px;
+  left: 0;
+  background-color: #353e49;
+  min-height: 40px;
+  width: 100%;
+  padding: 8px 0;
+  z-index: 1;
+  font-size: 17px;
 }
 
 #menu-navigation {
@@ -130,14 +161,14 @@ body {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
   transition: .5s all linear;
   max-height: 500px;
-
+  @extend .cool-text;
   .name {
     width: 100%;
     line-height: 50px;
     color: white;
     font-family: 'Montserrat', sans-serif;
     font-size: 20px;
-    font-weight: 400;
+
     max-height: 150px;
     overflow-y: scroll;
     &::-webkit-scrollbar {
@@ -146,7 +177,7 @@ body {
   }
 
   .user-meta, .acions, .options {
-    font-family: 'Montserrat', sans-serif;
+    @extend .cool-text;
     font-size: 20px;
     font-weight: 400;
     line-height: 60px;

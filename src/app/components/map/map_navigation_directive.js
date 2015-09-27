@@ -7,8 +7,14 @@ angular.module('game')
       restrict: 'E',
       templateUrl: 'app/components/map/map_navigation.html',
       link: function ($scope, $elem, attrs) {
+        
         $scope.attack = function(estate) {
           alert("O, koks mandras!");
+        };
+
+        $scope.cancel = function() {
+          $scope.options = [];
+          $scope.object = {};
         };
 
         $scope.attackUser = function (user) {

@@ -1,5 +1,5 @@
 angular.module('game')
-  .directive('mapNavigation', ['$window', '$swipe', 'Restangular', function ($window, $swipe, Restangular) {
+  .directive('mapNavigation', ['$window', '$swipe', 'Restangular', 'socket', function ($window, $swipe, Restangular, socket) {
     return {
       scope: {
         player: '=',
@@ -56,6 +56,10 @@ angular.module('game')
 
         $scope.canAfford = function (estate) {
           return $scope.player.gold >= estate.cost;
+        };
+
+        $scope.attackUser = function (user) {
+          socket.emit('attack, bitch', user);
         };
       }
     }
